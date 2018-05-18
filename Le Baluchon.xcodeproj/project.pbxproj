@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3761ECFE20AD98CA009F86C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */; };
-		3761ED0020AD98CA009F86C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ECFF20AD98CA009F86C9 /* ViewController.swift */; };
 		3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0120AD98CA009F86C9 /* Main.storyboard */; };
 		3761ED0820AD98CB009F86C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */; };
 		3761ED1320AD98CB009F86C9 /* Le_BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ED1220AD98CB009F86C9 /* Le_BaluchonTests.swift */; };
@@ -16,6 +15,11 @@
 		376503D920AEBAF3006B869B /* The Blacklist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503D720AEBAF3006B869B /* The Blacklist.ttf */; };
 		376503DC20AEBC89006B869B /* Timeless.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503DB20AEBC88006B869B /* Timeless.ttf */; };
 		376503E020AEC7BE006B869B /* Timeless-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503DF20AEC7BE006B869B /* Timeless-Bold.ttf */; };
+		376503E220AEFE03006B869B /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E120AEFE03006B869B /* WeatherViewController.swift */; };
+		376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E320AEFE10006B869B /* ChangeViewController.swift */; };
+		376503E620AEFE1A006B869B /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E520AEFE1A006B869B /* TranslateViewController.swift */; };
+		376503E820AF0C08006B869B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E720AF0C08006B869B /* Weather.swift */; };
+		376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E920AF0C2E006B869B /* ApiQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +35,6 @@
 /* Begin PBXFileReference section */
 		3761ECFA20AD98CA009F86C9 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3761ECFF20AD98CA009F86C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3761ED0220AD98CA009F86C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3761ED0720AD98CB009F86C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3761ED0920AD98CB009F86C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +45,11 @@
 		376503D720AEBAF3006B869B /* The Blacklist.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Blacklist.ttf"; sourceTree = "<group>"; };
 		376503DB20AEBC88006B869B /* Timeless.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Timeless.ttf; sourceTree = "<group>"; };
 		376503DF20AEC7BE006B869B /* Timeless-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Timeless-Bold.ttf"; sourceTree = "<group>"; };
+		376503E120AEFE03006B869B /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		376503E320AEFE10006B869B /* ChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeViewController.swift; sourceTree = "<group>"; };
+		376503E520AEFE1A006B869B /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		376503E720AF0C08006B869B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		376503E920AF0C2E006B869B /* ApiQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,8 @@
 		3761ED1E20AD9977009F86C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				376503E720AF0C08006B869B /* Weather.swift */,
+				376503E920AF0C2E006B869B /* ApiQuery.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,7 +129,9 @@
 		3761ED1F20AD9981009F86C9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3761ECFF20AD98CA009F86C9 /* ViewController.swift */,
+				376503E120AEFE03006B869B /* WeatherViewController.swift */,
+				376503E320AEFE10006B869B /* ChangeViewController.swift */,
+				376503E520AEFE1A006B869B /* TranslateViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -241,7 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3761ED0020AD98CA009F86C9 /* ViewController.swift in Sources */,
+				376503E820AF0C08006B869B /* Weather.swift in Sources */,
+				376503E620AEFE1A006B869B /* TranslateViewController.swift in Sources */,
+				376503E220AEFE03006B869B /* WeatherViewController.swift in Sources */,
+				376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */,
+				376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */,
 				3761ECFE20AD98CA009F86C9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
