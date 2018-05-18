@@ -10,9 +10,11 @@
 		3761ECFE20AD98CA009F86C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */; };
 		3761ED0020AD98CA009F86C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ECFF20AD98CA009F86C9 /* ViewController.swift */; };
 		3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0120AD98CA009F86C9 /* Main.storyboard */; };
-		3761ED0520AD98CB009F86C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0420AD98CB009F86C9 /* Assets.xcassets */; };
 		3761ED0820AD98CB009F86C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */; };
 		3761ED1320AD98CB009F86C9 /* Le_BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ED1220AD98CB009F86C9 /* Le_BaluchonTests.swift */; };
+		3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED2120ADC61B009F86C9 /* Assets.xcassets */; };
+		376503D920AEBAF3006B869B /* The Blacklist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503D720AEBAF3006B869B /* The Blacklist.ttf */; };
+		376503DC20AEBC89006B869B /* Timeless.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503DB20AEBC88006B869B /* Timeless.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +32,14 @@
 		3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3761ECFF20AD98CA009F86C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3761ED0220AD98CA009F86C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3761ED0420AD98CB009F86C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3761ED0720AD98CB009F86C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3761ED0920AD98CB009F86C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3761ED0E20AD98CB009F86C9 /* Le BaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Le BaluchonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3761ED1220AD98CB009F86C9 /* Le_BaluchonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonTests.swift; sourceTree = "<group>"; };
 		3761ED1420AD98CB009F86C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3761ED2120ADC61B009F86C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		376503D720AEBAF3006B869B /* The Blacklist.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Blacklist.ttf"; sourceTree = "<group>"; };
+		376503DB20AEBC88006B869B /* Timeless.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Timeless.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +81,10 @@
 		3761ECFC20AD98CA009F86C9 /* Le Baluchon */ = {
 			isa = PBXGroup;
 			children = (
-				3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */,
-				3761ECFF20AD98CA009F86C9 /* ViewController.swift */,
-				3761ED0120AD98CA009F86C9 /* Main.storyboard */,
-				3761ED0420AD98CB009F86C9 /* Assets.xcassets */,
-				3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */,
+				3761ED2020AD9995009F86C9 /* Others */,
+				3761ED1D20AD996E009F86C9 /* View */,
+				3761ED1F20AD9981009F86C9 /* ViewController */,
+				3761ED1E20AD9977009F86C9 /* Model */,
 				3761ED0920AD98CB009F86C9 /* Info.plist */,
 			);
 			path = "Le Baluchon";
@@ -94,6 +97,41 @@
 				3761ED1420AD98CB009F86C9 /* Info.plist */,
 			);
 			path = "Le BaluchonTests";
+			sourceTree = "<group>";
+		};
+		3761ED1D20AD996E009F86C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3761ED0120AD98CA009F86C9 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3761ED1E20AD9977009F86C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3761ED1F20AD9981009F86C9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3761ECFF20AD98CA009F86C9 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3761ED2020AD9995009F86C9 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				376503DB20AEBC88006B869B /* Timeless.ttf */,
+				376503D720AEBAF3006B869B /* The Blacklist.ttf */,
+				3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */,
+				3761ED2120ADC61B009F86C9 /* Assets.xcassets */,
+				3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,8 +216,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3761ED0820AD98CB009F86C9 /* LaunchScreen.storyboard in Resources */,
-				3761ED0520AD98CB009F86C9 /* Assets.xcassets in Resources */,
+				3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */,
 				3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */,
+				376503DC20AEBC89006B869B /* Timeless.ttf in Resources */,
+				376503D920AEBAF3006B869B /* The Blacklist.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +401,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9ND38V22J;
 				INFOPLIST_FILE = "Le Baluchon/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9ND38V22J;
 				INFOPLIST_FILE = "Le Baluchon/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

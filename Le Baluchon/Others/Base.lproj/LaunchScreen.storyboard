@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="The Blacklist.ttf">
+            <string>The-Blacklist</string>
+        </array>
+        <array key="Timeless.ttf">
+            <string>Timeless-Normal</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="IRp-qT-zwZ">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Aaf-Ed-sJg"/>
+                                    <constraint firstAttribute="height" constant="100" id="v9W-8v-w41"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le Baluchon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9L-mR-FPG">
+                                <rect key="frame" x="20" y="198" width="335" height="50.5"/>
+                                <fontDescription key="fontDescription" name="The-Blacklist" family="The Blacklist" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Votre couteau suisse numérique" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wa9-ec-apF">
+                                <rect key="frame" x="20" y="238.5" width="335" height="25"/>
+                                <fontDescription key="fontDescription" name="Timeless-Normal" family="Timeless" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wa9-ec-apF" firstAttribute="top" secondItem="n9L-mR-FPG" secondAttribute="bottom" constant="-10" id="EOh-yk-aIZ"/>
+                            <constraint firstItem="n9L-mR-FPG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FE6-nI-eQY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wa9-ec-apF" secondAttribute="trailing" constant="20" id="QXn-87-uNW"/>
+                            <constraint firstItem="IRp-qT-zwZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="R7w-z4-KH6"/>
+                            <constraint firstItem="wa9-ec-apF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SEW-TU-9Rv"/>
+                            <constraint firstItem="IRp-qT-zwZ" firstAttribute="top" secondItem="wa9-ec-apF" secondAttribute="bottom" constant="20" id="YCl-hZ-lqB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n9L-mR-FPG" secondAttribute="trailing" constant="20" id="foj-An-T9t"/>
+                            <constraint firstItem="IRp-qT-zwZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hyJ-Rw-V4a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loadingScreenIcon" width="76" height="76"/>
+    </resources>
+</document>
