@@ -15,6 +15,7 @@
 		3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED2120ADC61B009F86C9 /* Assets.xcassets */; };
 		376503D920AEBAF3006B869B /* The Blacklist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503D720AEBAF3006B869B /* The Blacklist.ttf */; };
 		376503DC20AEBC89006B869B /* Timeless.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503DB20AEBC88006B869B /* Timeless.ttf */; };
+		376503E020AEC7BE006B869B /* Timeless-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503DF20AEC7BE006B869B /* Timeless-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		3761ED2120ADC61B009F86C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		376503D720AEBAF3006B869B /* The Blacklist.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Blacklist.ttf"; sourceTree = "<group>"; };
 		376503DB20AEBC88006B869B /* Timeless.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Timeless.ttf; sourceTree = "<group>"; };
+		376503DF20AEC7BE006B869B /* Timeless-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Timeless-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				376503DB20AEBC88006B869B /* Timeless.ttf */,
 				376503D720AEBAF3006B869B /* The Blacklist.ttf */,
+				376503DF20AEC7BE006B869B /* Timeless-Bold.ttf */,
 				3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */,
 				3761ED2120ADC61B009F86C9 /* Assets.xcassets */,
 				3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3761ED0820AD98CB009F86C9 /* LaunchScreen.storyboard in Resources */,
+				376503E020AEC7BE006B869B /* Timeless-Bold.ttf in Resources */,
 				3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */,
 				3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */,
 				376503DC20AEBC89006B869B /* Timeless.ttf in Resources */,
