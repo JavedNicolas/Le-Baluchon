@@ -10,21 +10,28 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    // ---- Outlets
     @IBOutlet weak var textfieldSourceLocation: UITextField!
     @IBOutlet weak var buttonSourceLocation: UIButton!
     @IBOutlet weak var textfieldTargetLocation: UITextField!
     @IBOutlet weak var buttonValidate: UIButton!
     @IBOutlet weak var tableViewForWeather: UITableView!
 
+    // ---- properties
+    private var weather: Weather?
+
+
+    // ---- Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
         textfieldSourceLocation.resignFirstResponder()
         textfieldTargetLocation.resignFirstResponder()
     }
 
     @IBAction func valider() {
-        
+
     }
 
+    // ---- functions
     override func viewDidLoad() {
         super.viewDidLoad()
     }

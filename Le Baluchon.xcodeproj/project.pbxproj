@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D80D120BBF2AB00F99065 /* TestApiquery.swift */; };
 		3761ECFE20AD98CA009F86C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */; };
 		3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0120AD98CA009F86C9 /* Main.storyboard */; };
 		3761ED0820AD98CB009F86C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */; };
-		3761ED1320AD98CB009F86C9 /* Le_BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3761ED1220AD98CB009F86C9 /* Le_BaluchonTests.swift */; };
 		3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3761ED2120ADC61B009F86C9 /* Assets.xcassets */; };
 		376503D920AEBAF3006B869B /* The Blacklist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503D720AEBAF3006B869B /* The Blacklist.ttf */; };
 		376503DC20AEBC89006B869B /* Timeless.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376503DB20AEBC88006B869B /* Timeless.ttf */; };
@@ -33,13 +33,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		373D80D120BBF2AB00F99065 /* TestApiquery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApiquery.swift; sourceTree = "<group>"; };
 		3761ECFA20AD98CA009F86C9 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3761ED0220AD98CA009F86C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3761ED0720AD98CB009F86C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3761ED0920AD98CB009F86C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3761ED0E20AD98CB009F86C9 /* Le BaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Le BaluchonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3761ED1220AD98CB009F86C9 /* Le_BaluchonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonTests.swift; sourceTree = "<group>"; };
 		3761ED1420AD98CB009F86C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3761ED2120ADC61B009F86C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		376503D720AEBAF3006B869B /* The Blacklist.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The Blacklist.ttf"; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		3761ED1120AD98CB009F86C9 /* Le BaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
-				3761ED1220AD98CB009F86C9 /* Le_BaluchonTests.swift */,
+				373D80D120BBF2AB00F99065 /* TestApiquery.swift */,
 				3761ED1420AD98CB009F86C9 /* Info.plist */,
 			);
 			path = "Le BaluchonTests";
@@ -202,6 +202,7 @@
 					};
 					3761ED0D20AD98CB009F86C9 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 						TestTargetID = 3761ECF920AD98CA009F86C9;
 					};
 				};
@@ -266,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3761ED1320AD98CB009F86C9 /* Le_BaluchonTests.swift in Sources */,
+				373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +458,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9ND38V22J;
 				INFOPLIST_FILE = "Le BaluchonTests/Info.plist";
@@ -467,6 +469,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasjaved.Le-BaluchonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Le Baluchon.app/Le Baluchon";
@@ -478,6 +481,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9ND38V22J;
 				INFOPLIST_FILE = "Le BaluchonTests/Info.plist";

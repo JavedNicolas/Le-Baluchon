@@ -389,7 +389,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="valider:" destination="xgY-pf-qra" eventType="touchUpInside" id="wI2-L4-4Cu"/>
+                                    <action selector="valider" destination="xgY-pf-qra" eventType="touchUpInside" id="Uds-Wc-IcK"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sGE-8u-ONW">
