@@ -39,18 +39,25 @@ class TestApiquery: XCTestCase {
         XCTAssertNotNil(password)
     }
 
-    func testGivenToDoAQueryWhenTheQueryEndThenWeGetTheResult() {
+    func testGivenToDoAQueryWhenTheQueryEndWithSuccesThenWeGetTheResult() {
         // Given
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction")
 
-        // When
-        apiQuery.launchQuery()
+        // When and then
+        apiQuery.launchQuery(success: { (data, statusCode) in
+            XCTAssertNotNil(data)
+        }, failure: { statusCode, error in })
+    }
 
+    func testGivenToDoAQueryWhenTheQueryEndWithAnErrorThenWeGetAnError() {
+        // Given
+        apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris")
 
-
-        //Then
-
-
+        // When and then
+        apiQuery.launchQuery(success: { (data, statusCode) in}) { (statusCode, error) in
+            XCTAssertGreaterThan(statusCode, 299)
+            XCTAssertNotNil(error)
+        }
     }
     
 }

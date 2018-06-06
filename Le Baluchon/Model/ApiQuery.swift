@@ -11,7 +11,7 @@ import Foundation
 class ApiQuery {
 
     // ---- Structs
-    struct Query {
+    private struct Query {
         var queryString : String
         var userId : String
         var password : String
@@ -28,20 +28,35 @@ class ApiQuery {
     }
 
     // ----
-    let defaultSessions = URLSession(configuration: .default)
-    var dataTask : URLSessionDataTask?
-    var apiString : String
-    var queryResult: [String: Any?]?
-    let notificationName = Notification.Name(rawValue: "QueryCompleted")
-    var queryInfo : Query
+    private var apiString : String
+    private var queryInfo : Query
+    private let defaultSessions = URLSession(configuration: .default)
+    private var dataTask : URLSessionDataTask?
     var urlComponent : URLComponents?
 
+    var queryResult: [String: Any?]?
+
     // ---- method
+
+    /**
+     init the class with the APISTRING which is the url of the api
+     whithout the query, the id, and password of the account to
+     make the query
+
+     - Parameters:
+        - apistring : url of the api whithout the query
+        - userId : id of the user
+        - password : Password of the user
+     */
     init(_ apistring: String, _ userId : String, _ password: String) {
         self.apiString = apistring
         queryInfo = Query("", userId, password)
     }
 
+    /**
+     Init the Query with the query and informations in the class
+     like id, password and apistring
+     */
     func initQuery(_ query : String ) {
         self.urlComponent = URLComponents(string: apiString)
 
@@ -54,7 +69,15 @@ class ApiQuery {
         self.urlComponent = urlComp
     }
 
-    func launchQuery(completionHanlder: @escaping (Data) -> Void ) {
+    /**
+     Launch the query then return with escaping closure the data or an error
+
+     - Parameters:
+     - success : closure in case of success of the query, return the data and the status code
+     - failure : close in case of the failure of the query, return the status code and the error
+
+     */
+    func launchQuery(success: @escaping (Data, Int) -> Void, failure: @escaping (Int, Error) -> Void) {
         if let task = dataTask {
             task.cancel()
         }
@@ -63,15 +86,14 @@ class ApiQuery {
             guard let url = component.url else {return}
 
             dataTask = defaultSessions.dataTask(with: url) { data, reponse, error in
+                let reponseCode = reponse as? HTTPURLResponse
                 if let error = error {
-                   print(error)
+                    if let code = reponseCode?.statusCode {
+                        failure(code, error)
+                    }
                 } else if let data = data {
-                    let reponseCode = reponse as? HTTPURLResponse
-                    if reponseCode?.statusCode == 200 {
-                        self.updateResult(data)
-
-                        let notification = Notification(name: self.notificationName)
-                        NotificationCenter.default.post(notification)
+                    if let code = reponseCode?.statusCode, code >= 200 && code < 300 {
+                        success(data, code)
                     }
                 }
             }

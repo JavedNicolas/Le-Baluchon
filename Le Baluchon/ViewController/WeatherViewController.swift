@@ -25,6 +25,7 @@ class WeatherViewController: UIViewController {
     @IBAction func dismissKeyboard(_ sender: Any) {
         textfieldSourceLocation.resignFirstResponder()
         textfieldTargetLocation.resignFirstResponder()
+
     }
 
     @IBAction func valider() {
