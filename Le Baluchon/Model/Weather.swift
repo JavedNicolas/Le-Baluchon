@@ -36,14 +36,13 @@ class Weather : ApiQuery {
     }
 
     func queryForCurrentWeather(inTown: String, completion: @escaping () -> ()) {
-        let query = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')&format=json&callback=callbackFunction"
+        let query = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction"
         self.initQuery(query)
         self.launchQuery(success: { (data, statusCode) in
             let json = self.parseDataAsJSON(data)
             self.currentWeather = WeatherInfos(json)
             completion()
         }, failure: { (statusCode, error) in
-            
 
         })
     }

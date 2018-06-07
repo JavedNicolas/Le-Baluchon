@@ -25,11 +25,14 @@ class WeatherViewController: UIViewController {
     @IBAction func dismissKeyboard(_ sender: Any) {
         textfieldSourceLocation.resignFirstResponder()
         textfieldTargetLocation.resignFirstResponder()
-
     }
 
     @IBAction func valider() {
-
+        weather = Weather()
+        if let curentWeather = weather {
+            curentWeather.queryForCurrentWeather(inTown: "Paris, fr") {
+            }
+        }
     }
 
     // ---- functions
