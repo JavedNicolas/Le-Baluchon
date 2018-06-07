@@ -43,7 +43,7 @@ class Weather : ApiQuery {
             self.currentWeather = WeatherInfos(json)
             completion()
         }, failure: { (statusCode, error) in
-
+            print(error)
         })
     }
 

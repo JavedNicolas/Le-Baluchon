@@ -24,7 +24,11 @@ class TestWeather: XCTestCase {
         // When
         weather.queryForCurrentWeather(inTown: "Paris, fr") {
             // Then
-            XCTAssertNotNil(self.weather.currentWeather)
+            if let curWeather = self.weather.currentWeather {
+                XCTAssertNotEqual(curWeather.date, "")
+                XCTAssertNotEqual(curWeather.text, "")
+                XCTAssertNotEqual(curWeather.temp, 0)
+            }
         }
     }
 }

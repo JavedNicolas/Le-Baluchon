@@ -18,7 +18,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tableViewForWeather: UITableView!
 
     // ---- properties
-    private var weather: Weather?
+    var weather: Weather!
 
 
     // ---- Actions
@@ -31,6 +31,7 @@ class WeatherViewController: UIViewController {
         weather = Weather()
         if let curentWeather = weather {
             curentWeather.queryForCurrentWeather(inTown: "Paris, fr") {
+                print("test")
             }
         }
     }

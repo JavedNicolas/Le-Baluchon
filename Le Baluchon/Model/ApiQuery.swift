@@ -23,9 +23,6 @@ class ApiQuery {
         }
     }
 
-    struct QueryAnswer {
-
-    }
 
     // ----
     private var apiString : String
