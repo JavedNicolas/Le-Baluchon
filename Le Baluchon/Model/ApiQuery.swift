@@ -101,17 +101,16 @@ class ApiQuery {
         }
     }
 
-    private func updateResult(_ data: Data) {
-        print(data)
+    /**
+     Parse the Query data as JSON
+     - Parameter data: Data to convert to JSON
+     - returns: The JSON as Any
+    */
+    func parseDataAsJSON(_ data: Data) -> [String : Any] {
         do {
-            let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-            print(json)
+            return  (try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [String : Any])!
         }catch let jsonErr {
-            print(jsonErr)
+            return ["Erreur":jsonErr]
         }
-    }
-
-    func getResult() {
-        print(queryResult)
     }
 }

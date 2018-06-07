@@ -20,6 +20,7 @@
 		376503E620AEFE1A006B869B /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E520AEFE1A006B869B /* TranslateViewController.swift */; };
 		376503E820AF0C08006B869B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E720AF0C08006B869B /* Weather.swift */; };
 		376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E920AF0C2E006B869B /* ApiQuery.swift */; };
+		37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18DCB20C806EA000E9D6B /* TestWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		376503E520AEFE1A006B869B /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		376503E720AF0C08006B869B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		376503E920AF0C2E006B869B /* ApiQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiQuery.swift; sourceTree = "<group>"; };
+		37F18DCB20C806EA000E9D6B /* TestWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				373D80D120BBF2AB00F99065 /* TestApiquery.swift */,
+				37F18DCB20C806EA000E9D6B /* TestWeather.swift */,
 				3761ED1420AD98CB009F86C9 /* Info.plist */,
 			);
 			path = "Le BaluchonTests";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */,
 				373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

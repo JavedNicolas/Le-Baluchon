@@ -10,7 +10,6 @@ import XCTest
 @testable import Le_Baluchon
 
 class TestApiquery: XCTestCase {
-
     var apiQuery : ApiQuery!
     
     override func setUp() {
@@ -18,10 +17,6 @@ class TestApiquery: XCTestCase {
         apiQuery = ApiQuery("https://query.yahooapis.com/v1/public/yql?q=",
                             "dj0yJmk9dHJTZnRmU202N3M3JmQ9WVdrOWJqRllZWE5STjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1jMA--",
                             "b12a7017c524946e5628abf0e83218d0f478b45a")
-    }
-
-    @objc func getResult() {
-
     }
 
     func testGivenWeWantToInitializeAQueryWhenWeDoItThenWeGetAnURLComponentWithQueryAndUserAndPassword() {
@@ -59,5 +54,15 @@ class TestApiquery: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
-    
+
+    func testGivenWeMadeASuccessfullQueryWhenWeGetTheDataThenWeParseItAsJSON() {
+        // Given
+        apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction")
+
+        apiQuery.launchQuery(success: { (data, statusCode) in
+            let JSONOfData = self.apiQuery.parseDataAsJSON(data)
+            XCTAssertNotNil(JSONOfData)
+        },
+        failure: { (statusCode, error) in})
+    }
 }
