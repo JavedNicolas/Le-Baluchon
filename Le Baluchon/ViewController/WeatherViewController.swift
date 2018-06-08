@@ -30,8 +30,8 @@ class WeatherViewController: UIViewController {
     @IBAction func valider() {
         weather = Weather()
         if let curentWeather = weather {
-            curentWeather.queryForCurrentWeather(inTown: "Paris, fr") {
-                print("test")
+            curentWeather.queryForCurrentWeather(inTown: "Paris, fr") { statusCode in
+                print(statusCode)
             }
         }
     }

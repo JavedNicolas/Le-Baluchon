@@ -13,7 +13,7 @@ class Weather : ApiQuery {
     // ----- Query Attribut
     private let id = "dj0yJmk9dHJTZnRmU202N3M3JmQ9WVdrOWJqRllZWE5STjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1jMA--"
     private let password = "b12a7017c524946e5628abf0e83218d0f478b45a"
-    private let apiURL = "https://query.yahooapis.com/v1/public/yql?q="
+    private let apiURL = "https://query.yahooapis.com/v1/public/yql"
 
     // --- Structs
     struct WeatherInfos {
@@ -35,15 +35,15 @@ class Weather : ApiQuery {
         super.init(apiURL, id, password)
     }
 
-    func queryForCurrentWeather(inTown: String, completion: @escaping () -> ()) {
-        let query = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction"
+    func queryForCurrentWeather(inTown: String, completion: @escaping (Int) -> ()) {
+        let query = "?q=select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')&format=json&callback=callbackFunction"
         self.initQuery(query)
         self.launchQuery(success: { (data, statusCode) in
             let json = self.parseDataAsJSON(data)
             self.currentWeather = WeatherInfos(json)
-            completion()
+            completion(statusCode)
         }, failure: { (statusCode, error) in
-            print(error)
+            completion(statusCode)
         })
     }
 

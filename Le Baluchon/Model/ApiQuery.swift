@@ -31,8 +31,6 @@ class ApiQuery {
     private var dataTask : URLSessionDataTask?
     var urlComponent : URLComponents?
 
-    var queryResult: [String: Any?]?
-
     // ---- method
 
     /**
@@ -59,7 +57,8 @@ class ApiQuery {
 
         guard var urlComp = urlComponent else {return}
 
-        urlComp.query = queryInfo.queryString
+        urlComp.query = query
+        urlComp.query = urlComp.percentEncodedQuery
         urlComp.user = queryInfo.userId
         urlComp.password = queryInfo.password
 
@@ -74,7 +73,7 @@ class ApiQuery {
      - failure : close in case of the failure of the query, return the status code and the error
 
      */
-    func launchQuery(success: @escaping (Data, Int) -> Void, failure: @escaping (Int, Error) -> Void) {
+    func launchQuery(success: @escaping (Data, Int) -> Void, failure: @escaping (Int, String) -> Void) {
         if let task = dataTask {
             task.cancel()
         }
@@ -84,14 +83,15 @@ class ApiQuery {
 
             dataTask = defaultSessions.dataTask(with: url) { data, reponse, error in
                 let reponseCode = reponse as? HTTPURLResponse
+
+                guard let code = reponseCode?.statusCode else {return}
+
                 if let error = error {
-                    if let code = reponseCode?.statusCode {
-                        failure(code, error)
-                    }
-                } else if let data = data {
-                    if let code = reponseCode?.statusCode, code >= 200 && code < 300 {
-                        success(data, code)
-                    }
+                    failure(code, error.localizedDescription)
+                } else if let data = data, code >= 200 && code < 300 {
+                    success(data, code)
+                } else if code >= 300 {
+                    failure(code, "")
                 }
             }
             dataTask?.resume()
