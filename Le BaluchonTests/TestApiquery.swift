@@ -54,15 +54,4 @@ class TestApiquery: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
-
-    func testGivenWeMadeASuccessfullQueryWhenWeGetTheDataThenWeParseItAsJSON() {
-        // Given
-        apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction")
-
-        apiQuery.launchQuery(success: { (data, statusCode) in
-            let JSONOfData = self.apiQuery.parseDataAsJSON(data)
-            XCTAssertNotNil(JSONOfData)
-        },
-        failure: { (statusCode, error) in})
-    }
 }

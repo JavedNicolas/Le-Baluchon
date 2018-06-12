@@ -13,38 +13,43 @@ class Weather : ApiQuery {
     // ----- Query Attribut
     private let id = "dj0yJmk9dHJTZnRmU202N3M3JmQ9WVdrOWJqRllZWE5STjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1jMA--"
     private let password = "b12a7017c524946e5628abf0e83218d0f478b45a"
-    private let apiURL = "https://query.yahooapis.com/v1/public/yql"
+    private let prefix = "https://query.yahooapis.com/v1/public/yql?"
+    private let suffix = "&format=json"
 
-    // --- Structs
-    struct WeatherInfos {
-        var date : String
-        var text : String
-        var temp : Int
 
-        init(_ json: [String : Any]) {
-            date = json["date"] as? String ?? ""
-            text = json["text"] as? String ?? ""
-            temp = json["temp"] as? Int ?? 0
-        }
-    }
 
     // ----- Attribut
-    var currentWeather : WeatherInfos?
+    var forecast : WeatherQuery?
 
     init(){
-        super.init(apiURL, id, password)
+        super.init(prefix, id, password)
     }
 
-    func queryForCurrentWeather(inTown: String, completion: @escaping (Int) -> ()) {
-        let query = "?q=select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')&format=json&callback=callbackFunction"
+
+    /**
+     Launch the query to get the last forecast for a given town
+
+     - parameters:
+        -  inTown : The given Town
+        - completion: The completion Handler which is called when the query end (in a bad or a good way
+                        and escape the status code.
+
+    */
+    func queryForForecast(inTown: String, completion: @escaping (Int) -> ()) {
+        let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)') \(suffix)"
         self.initQuery(query)
         self.launchQuery(success: { (data, statusCode) in
-            let json = self.parseDataAsJSON(data)
-            self.currentWeather = WeatherInfos(json)
+            do {
+                let parsedQueryResult = try JSONDecoder().decode(WeatherQuery.self, from: data)
+
+            } catch let parseError {
+                print(parseError)
+            }
             completion(statusCode)
         }, failure: { (statusCode, error) in
             completion(statusCode)
         })
+
     }
 
 }

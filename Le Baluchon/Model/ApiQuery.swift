@@ -25,7 +25,7 @@ class ApiQuery {
 
 
     // ----
-    private var apiString : String
+    private var queryPrefix : String
     private var queryInfo : Query
     private let defaultSessions = URLSession(configuration: .default)
     private var dataTask : URLSessionDataTask?
@@ -44,7 +44,7 @@ class ApiQuery {
         - password : Password of the user
      */
     init(_ apistring: String, _ userId : String, _ password: String) {
-        self.apiString = apistring
+        self.queryPrefix = apistring
         queryInfo = Query("", userId, password)
     }
 
@@ -52,13 +52,12 @@ class ApiQuery {
      Init the Query with the query and informations in the class
      like id, password and apistring
      */
-    func initQuery(_ query : String ) {
-        self.urlComponent = URLComponents(string: apiString)
+    func initQuery(_ query : String) {
+        self.urlComponent = URLComponents(string: queryPrefix)
 
         guard var urlComp = urlComponent else {return}
 
         urlComp.query = query
-        urlComp.query = urlComp.percentEncodedQuery
         urlComp.user = queryInfo.userId
         urlComp.password = queryInfo.password
 
@@ -95,19 +94,6 @@ class ApiQuery {
                 }
             }
             dataTask?.resume()
-        }
-    }
-
-    /**
-     Parse the Query data as JSON
-     - Parameter data: Data to convert to JSON
-     - returns: The JSON as Any
-    */
-    func parseDataAsJSON(_ data: Data) -> [String : Any] {
-        do {
-            return  (try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [String : Any])!
-        }catch let jsonErr {
-            return ["Erreur":jsonErr]
         }
     }
 }

@@ -20,6 +20,7 @@
 		376503E620AEFE1A006B869B /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E520AEFE1A006B869B /* TranslateViewController.swift */; };
 		376503E820AF0C08006B869B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E720AF0C08006B869B /* Weather.swift */; };
 		376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E920AF0C2E006B869B /* ApiQuery.swift */; };
+		376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C90C220CFE35F007E6460 /* WeatherInfos.swift */; };
 		37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18DCB20C806EA000E9D6B /* TestWeather.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		376503E520AEFE1A006B869B /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		376503E720AF0C08006B869B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		376503E920AF0C2E006B869B /* ApiQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiQuery.swift; sourceTree = "<group>"; };
+		376C90C220CFE35F007E6460 /* WeatherInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfos.swift; sourceTree = "<group>"; };
 		37F18DCB20C806EA000E9D6B /* TestWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			children = (
 				376503E720AF0C08006B869B /* Weather.swift */,
 				376503E920AF0C2E006B869B /* ApiQuery.swift */,
+				376C90C220CFE35F007E6460 /* WeatherInfos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				376503E220AEFE03006B869B /* WeatherViewController.swift in Sources */,
 				376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */,
 				376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */,
+				376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */,
 				3761ECFE20AD98CA009F86C9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

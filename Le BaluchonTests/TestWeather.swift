@@ -17,19 +17,17 @@ class TestWeather: XCTestCase {
         weather = Weather()
     }
 
-    func testGivenWeWantToGetTheWeatherWhenTheQueryEndWithSuccessThenWe() {
+    func testGivenWeWantToGetTheForecastWhenTheQueryEndWithSuccessThenWeGetIt() {
         //Given
         //in the setUp
 
         // When
-        weather.queryForCurrentWeather(inTown: "Paris, fr") { statusCode in
+        weather.queryForForecast(inTown: "Paris, fr") { statusCode in
             // Then
-            if let curWeather = self.weather.currentWeather {
+            if let forecast = self.weather.forecast {
                 XCTAssertGreaterThan(statusCode, 199)
                 XCTAssertLessThan(statusCode, 300)
-                XCTAssertEqual(curWeather.date, "")
-                XCTAssertEqual(curWeather.text, "")
-                XCTAssertEqual(curWeather.temp, 0)
+                XCTAssertNotNil(forecast)
             }
         }
     }
