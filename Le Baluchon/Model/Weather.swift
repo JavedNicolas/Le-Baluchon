@@ -16,15 +16,26 @@ class Weather : ApiQuery {
     private let prefix = "https://query.yahooapis.com/v1/public/yql?"
     private let suffix = "&format=json"
 
+    // ------ Struct
+    struct Forecast {
+        var location : WeatherLocation
+        var forecast : [WeatherCondition]
+        var currentCondition : WeatherCurrentCondition
 
+        init (_ location : WeatherLocation, _ forecast : [WeatherCondition], _ currentCondition: WeatherCurrentCondition){
+            self.location = location
+            self.forecast = forecast
+            self.currentCondition = currentCondition
+        }
+    }
 
     // ----- Attribut
-    var forecast : WeatherQuery?
+    var parsedQuery : WeatherQuery?
+    var forecast : Forecast?
 
     init(){
         super.init(prefix, id, password)
     }
-
 
     /**
      Launch the query to get the last forecast for a given town
@@ -40,15 +51,25 @@ class Weather : ApiQuery {
         self.initQuery(query)
         self.launchQuery(success: { (data, statusCode) in
             do {
-                let parsedQueryResult = try JSONDecoder().decode(WeatherQuery.self, from: data)
-
+                self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
             } catch let parseError {
                 print(parseError)
             }
+            self.extractUsefullInfosFromParsedQuery()
             completion(statusCode)
         }, failure: { (statusCode, error) in
             completion(statusCode)
         })
+
+    }
+
+    func extractUsefullInfosFromParsedQuery() {
+        guard let forecastChannel = parsedQuery?.query?.results?.channel else { return }
+        guard let location = forecastChannel.location else { return }
+        guard let forecastInfos = forecastChannel.item?.forecast else { return }
+        guard let currentCondition = forecastChannel.item?.condition else { return }
+
+        self.forecast = Forecast(location, forecastInfos, currentCondition)
 
     }
 

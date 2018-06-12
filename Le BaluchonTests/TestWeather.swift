@@ -24,11 +24,22 @@ class TestWeather: XCTestCase {
         // When
         weather.queryForForecast(inTown: "Paris, fr") { statusCode in
             // Then
-            if let forecast = self.weather.forecast {
+            if let parsed = self.weather.parsedQuery {
                 XCTAssertGreaterThan(statusCode, 199)
                 XCTAssertLessThan(statusCode, 300)
-                XCTAssertNotNil(forecast)
+                XCTAssertNotNil(parsed)
             }
+        }
+    }
+
+    func testGivenWeWantForecaseInfosWhenWeTheQueryWasParsedThenCreateAStructWithUsefullInfos(){
+        // Given & then
+
+        weather.queryForForecast(inTown: "Paris, fr") { statusCode in
+            // Then
+            self.weather.extractUsefullInfosFromParsedQuery()
+            XCTAssertNotNil(self.weather.forecast)
+
         }
     }
 }
