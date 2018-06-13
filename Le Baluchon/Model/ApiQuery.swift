@@ -23,8 +23,7 @@ class ApiQuery {
         }
     }
 
-
-    // ----
+    // ---- attribut
     private var queryPrefix : String
     private var queryInfo : Query
     private let defaultSessions = URLSession(configuration: .default)
@@ -72,7 +71,7 @@ class ApiQuery {
      - failure : close in case of the failure of the query, return the status code and the error
 
      */
-    func launchQuery(success: @escaping (Data, Int) -> Void, failure: @escaping (Int, String) -> Void) {
+    func launchQuery(success: @escaping (Data, Int) -> Void, failure: @escaping (Int) -> Void) {
         if let task = dataTask {
             task.cancel()
         }
@@ -85,12 +84,12 @@ class ApiQuery {
 
                 guard let code = reponseCode?.statusCode else {return}
 
-                if let error = error {
-                    failure(code, error.localizedDescription)
+                if error != nil {
+                    failure(code)
                 } else if let data = data, code >= 200 && code < 300 {
                     success(data, code)
                 } else if code >= 300 {
-                    failure(code, "")
+                    failure(code)
                 }
             }
             dataTask?.resume()

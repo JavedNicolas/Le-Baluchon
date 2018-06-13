@@ -15,6 +15,7 @@ class Weather : ApiQuery {
     private let password = "b12a7017c524946e5628abf0e83218d0f478b45a"
     private let prefix = "https://query.yahooapis.com/v1/public/yql?"
     private let suffix = "&format=json"
+    var errorDelegate : ErrorDelegate?
 
     // ------ Struct
     struct Forecast {
@@ -57,12 +58,21 @@ class Weather : ApiQuery {
             }
             self.extractUsefullInfosFromParsedQuery()
             completion(statusCode)
-        }, failure: { (statusCode, error) in
-            completion(statusCode)
+        }, failure: { (statusCode) in
+
+            switch statusCode {
+            case 400...499: self.errorDelegate?.errorHandling(self, Error.webClientError)
+            case 500...599: self.errorDelegate?.errorHandling(self, Error.serverError)
+            default : self.errorDelegate?.errorHandling(self, Error.unknownError)
+            }
         })
 
     }
 
+    /**
+        Extract usefull infos from the parsed query so we can use them to
+        display the forecast and current weather.
+    */
     func extractUsefullInfosFromParsedQuery() {
         guard let forecastChannel = parsedQuery?.query?.results?.channel else { return }
         guard let location = forecastChannel.location else { return }

@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+
     // ---- Outlets
     @IBOutlet weak var textfieldSourceLocation: UITextField!
     @IBOutlet weak var buttonSourceLocation: UIButton!
@@ -18,7 +19,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tableViewForWeather: UITableView!
 
     // ---- properties
-    var weather: Weather!
+    private var weather: Weather?
 
 
     // ---- Actions
@@ -28,16 +29,20 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func valider() {
-        weather = Weather()
-        if let curentWeather = weather {
-            curentWeather.queryForForecast(inTown: "Paris, fr") { statusCode in
-            }
+        guard let forecast = weather else {return}
+
+        forecast.queryForForecast(inTown: "Paris, fr") { statusCode in
+
         }
     }
 
     // ---- functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        weather = Weather()
+        guard let forecast = weather else {return}
+
+        forecast.errorDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +50,26 @@ class WeatherViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension WeatherViewController : ErrorDelegate {
+    func errorHandling(_ sender: Any, _ error: DelegateError) {
+        let alert = UIAlertController(title: "Erreur", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        switch error {
+        case Error.serverError:
+                alert.message = Error.serverError.rawValue
+        case Error.webClientError:
+            alert.message = Error.webClientError.rawValue
+        case Error.unknownError:
+            alert.message = Error.unknownError.rawValue
+        default :
+            alert.message = Error.unknownError.rawValue
+        }
+
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension WeatherViewController: UITextFieldDelegate {

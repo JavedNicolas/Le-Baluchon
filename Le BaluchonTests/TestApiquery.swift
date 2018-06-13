@@ -41,7 +41,7 @@ class TestApiquery: XCTestCase {
         // When and then
         apiQuery.launchQuery(success: { (data, statusCode) in
             XCTAssertNotNil(data)
-        }, failure: { statusCode, error in })
+        }, failure: { statusCode in })
     }
 
     func testGivenToDoAQueryWhenTheQueryEndWithAnErrorThenWeGetAnError() {
@@ -49,9 +49,10 @@ class TestApiquery: XCTestCase {
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris")
 
         // When and then
-        apiQuery.launchQuery(success: { (data, statusCode) in}) { (statusCode, error) in
+        apiQuery.launchQuery(success: { (data, statusCode) in}, failure : { (statusCode) in
             XCTAssertGreaterThan(statusCode, 299)
-            XCTAssertNotNil(error)
-        }
+        })
     }
+
+
 }
