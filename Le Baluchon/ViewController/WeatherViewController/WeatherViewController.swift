@@ -18,7 +18,8 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tableViewForWeather: UITableView!
 
     // ---- properties
-    internal var weather: Weather?
+    internal var weatherTarget: Weather?
+    internal var weatherSource: Weather?
 
 
     // ---- Actions
@@ -28,21 +29,31 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func valider() {
-        guard let forecast = weather else {return}
+        guard let forecastTarget = weatherTarget, let forecastSource = weatherSource else {return}
 
-        forecast.queryForForecast(inTown: "Paris, fr") { statusCode in
-            DispatchQueue.main.async {
-                self.tableViewForWeather.reloadData()
+        guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
+        { return }
+
+            forecastTarget.queryForForecast(inTown: targetLocation) { statusCode in
+                forecastSource.queryForForecast(inTown: sourceLocation) { statusCode in
+                    DispatchQueue.main.async {
+                        self.tableViewForWeather.reloadData()
+                    }
+                }
             }
-        }
     }
 
     // ---- functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        weather = Weather()
-        guard let forecast = weather else {return}
-        forecast.errorDelegate = self
+        weatherTarget = Weather()
+        guard let forecastTarget = weatherTarget else {return}
+        forecastTarget.errorDelegate = self
+
+        weatherSource = Weather()
+        guard let forecastSource = weatherSource else {return}
+        forecastSource.errorDelegate = self
+0
     }
 
     override func didReceiveMemoryWarning() {

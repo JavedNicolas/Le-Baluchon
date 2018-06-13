@@ -10,7 +10,7 @@ import Foundation
 
 // ------- Enum
 enum Error : String, DelegateError{
-    case webClientError = "Une erreur est survenue, verifié votre connexion internet ou relancer l'application"
+    case webClientError = "Une erreur est survenue, verifié votre connexion internet ou les informations de votre demande."
     case serverError = "Une erreur est survenue sur le serveur. Merci de bien vouloir ressayer plus tard"
     case unknownError = "Une erreur est survenue. Merci de bien vouloir ressayer plus tard"
 }
