@@ -48,7 +48,7 @@ class Weather : ApiQuery {
 
     */
     func queryForForecast(inTown: String, completion: @escaping (Int) -> ()) {
-        let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)') \(suffix)"
+        let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')\(suffix)"
         self.initQuery(query)
         self.launchQuery(success: { (data, statusCode) in
             do {

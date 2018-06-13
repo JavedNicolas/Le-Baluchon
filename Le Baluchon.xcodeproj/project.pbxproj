@@ -105,7 +105,6 @@
 				37516B0220D10D9200CB60D2 /* TextfieldDelegateExtension.swift */,
 				37516B0420D10DB900CB60D2 /* UITableViewDelegateExtension.swift */,
 				37516B0620D10DCC00CB60D2 /* UITableViewDataSourceExtension.swift */,
-				37516B0820D1122A00CB60D2 /* WeatherTableCell.swift */,
 			);
 			path = WeatherViewController;
 			sourceTree = "<group>";
@@ -153,6 +152,7 @@
 		3761ED1D20AD996E009F86C9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				37516B0820D1122A00CB60D2 /* WeatherTableCell.swift */,
 				3761ED0120AD98CA009F86C9 /* Main.storyboard */,
 			);
 			path = View;

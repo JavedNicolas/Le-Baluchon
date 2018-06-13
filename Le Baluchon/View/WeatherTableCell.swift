@@ -10,9 +10,11 @@ import UIKit
 
 class WeatherTableCell : UITableViewCell {
     
-    @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var temperature: UILabel!
-    @IBOutlet weak var weatherText: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var weatherTextLabel: UILabel!
+    @IBOutlet weak var weahterImageView: UIImageView!
+
 }
 
 

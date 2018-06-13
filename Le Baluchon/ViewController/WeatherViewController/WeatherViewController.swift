@@ -43,7 +43,6 @@ class WeatherViewController: UIViewController {
         weather = Weather()
         guard let forecast = weather else {return}
         forecast.errorDelegate = self
-
     }
 
     override func didReceiveMemoryWarning() {

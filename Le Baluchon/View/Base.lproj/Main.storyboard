@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -400,45 +401,56 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConditionCell" id="lnB-UU-VZY" customClass="WeatherTableCell" customModule="Le_Baluchon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lnB-UU-VZY" id="Adg-hw-YEX">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lnB-UU-VZY" id="Adg-hw-YEX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="xta-qY-E94">
-                                                    <rect key="frame" x="25" y="11" width="270" height="22"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="xta-qY-E94">
+                                                    <rect key="frame" x="112" y="11" width="183" height="22"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ady-RE-VeC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="22"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ady-RE-VeC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="183" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOl-rp-IX9">
-                                                            <rect key="frame" x="114" y="0.0" width="42" height="22"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOl-rp-IX9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="183" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFg-DY-Yiw">
-                                                            <rect key="frame" x="228" y="0.0" width="42" height="22"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFg-DY-Yiw">
+                                                            <rect key="frame" x="0.0" y="20.5" width="183" height="1.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IDK-2v-6rv">
+                                                    <rect key="frame" x="10" y="0.0" width="100" height="80"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="5Kn-XO-yZA"/>
+                                                        <constraint firstAttribute="width" constant="100" id="JQ6-fS-z4C"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="xta-qY-E94" secondAttribute="trailing" constant="10" id="0oY-jR-KCy"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="xta-qY-E94" secondAttribute="bottom" id="7dl-wj-hda"/>
-                                                <constraint firstItem="xta-qY-E94" firstAttribute="leading" secondItem="Adg-hw-YEX" secondAttribute="leadingMargin" constant="10" id="Fu3-GK-96b"/>
                                                 <constraint firstItem="xta-qY-E94" firstAttribute="top" secondItem="Adg-hw-YEX" secondAttribute="topMargin" id="OJq-Tq-Dr5"/>
+                                                <constraint firstItem="xta-qY-E94" firstAttribute="leadingMargin" secondItem="IDK-2v-6rv" secondAttribute="trailing" constant="2" id="aOm-hQ-VGl"/>
+                                                <constraint firstItem="IDK-2v-6rv" firstAttribute="leading" secondItem="Adg-hw-YEX" secondAttribute="leading" constant="10" id="epp-Uo-C8R"/>
+                                                <constraint firstItem="IDK-2v-6rv" firstAttribute="top" secondItem="Adg-hw-YEX" secondAttribute="top" id="pgz-EQ-J3s"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="date" destination="ady-RE-VeC" id="wBO-wO-fz4"/>
-                                            <outlet property="temperature" destination="yOl-rp-IX9" id="aT2-n0-2M1"/>
-                                            <outlet property="weatherText" destination="fFg-DY-Yiw" id="xz3-iN-e6j"/>
+                                            <outlet property="dateLabel" destination="ady-RE-VeC" id="DfH-Pg-rVB"/>
+                                            <outlet property="temperatureLabel" destination="fFg-DY-Yiw" id="DIH-Wo-6fv"/>
+                                            <outlet property="weahterImageView" destination="IDK-2v-6rv" id="siA-Ks-wgE"/>
+                                            <outlet property="weatherTextLabel" destination="yOl-rp-IX9" id="zTc-qx-keE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

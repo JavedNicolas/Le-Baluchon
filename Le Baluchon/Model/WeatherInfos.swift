@@ -35,6 +35,7 @@ struct WeatherForecast : Decodable {
 
 struct WeatherCurrentCondition : Decodable {
     var date : String?
+    var code : String?
     var temp : String?
     var text : String?
 }
