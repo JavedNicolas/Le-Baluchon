@@ -26,6 +26,7 @@ class WeatherViewController: UIViewController {
     internal var weatherTarget: Weather?
     internal var weatherSource: Weather?
     private let tableviewRowHeight = CGFloat(130)
+    private var alert : UIAlertController!
 
 
     // ---- Actions
@@ -35,12 +36,14 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func valider() {
+
         guard let forecastTarget = weatherTarget, let forecastSource = weatherSource else {return}
 
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
         { return }
 
         forecastTarget.queryForForecast(inTown: targetLocation) { statusCode in
+            self.loading(true)
             forecastSource.queryForForecast(inTown: sourceLocation) { statusCode in
                 DispatchQueue.main.async {
                     self.tableViewForWeatherTarget.reloadData()
@@ -54,6 +57,7 @@ class WeatherViewController: UIViewController {
                     self.targetLabel.text = locationTarget
                     self.dateLabel.text = "Date"
 
+                    self.loading(false)
                 }
             }
         }
@@ -83,6 +87,17 @@ class WeatherViewController: UIViewController {
     func fahrenheitToCelcius( _ temp: Float) -> Float{
         return (temp - 32) / 1.8
 
+    }
+
+    func loading(_ display: Bool) {
+        if display == true {
+            let title = "Chargement"
+            let message = "Les prévisions météo sont en cours de chargement. \n Merci de bien vouloir patienter ..."
+            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+        }else{
+            alert.dismiss(animated: true, completion: nil)
+        }
     }
 
 }
