@@ -15,11 +15,17 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var buttonSourceLocation: UIButton!
     @IBOutlet weak var textfieldTargetLocation: UITextField!
     @IBOutlet weak var buttonValidate: UIButton!
-    @IBOutlet weak var tableViewForWeather: UITableView!
+    @IBOutlet weak var tableViewForWeatherSource: UITableView!
+    @IBOutlet weak var tableViewForWeatherTarget: UITableView!
+    @IBOutlet weak var tableViewForWeatherDate: UITableView!
+    @IBOutlet weak var dateLabel : UILabel!
+    @IBOutlet weak var sourceLabel : UILabel!
+    @IBOutlet weak var targetLabel : UILabel!
 
     // ---- properties
     internal var weatherTarget: Weather?
     internal var weatherSource: Weather?
+    private let tableviewRowHeight = CGFloat(130)
 
 
     // ---- Actions
@@ -34,13 +40,23 @@ class WeatherViewController: UIViewController {
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
         { return }
 
-            forecastTarget.queryForForecast(inTown: targetLocation) { statusCode in
-                forecastSource.queryForForecast(inTown: sourceLocation) { statusCode in
-                    DispatchQueue.main.async {
-                        self.tableViewForWeather.reloadData()
-                    }
+        forecastTarget.queryForForecast(inTown: targetLocation) { statusCode in
+            forecastSource.queryForForecast(inTown: sourceLocation) { statusCode in
+                DispatchQueue.main.async {
+                    self.tableViewForWeatherTarget.reloadData()
+                    self.tableViewForWeatherSource.reloadData()
+                    self.tableViewForWeatherDate.reloadData()
+
+                    guard let locationSource = forecastSource.forecast?.location.city else { return }
+                    guard let locationTarget = forecastTarget.forecast?.location.city else { return }
+
+                    self.sourceLabel.text = locationSource
+                    self.targetLabel.text = locationTarget
+                    self.dateLabel.text = "Date"
+
                 }
             }
+        }
     }
 
     // ---- functions
@@ -53,7 +69,10 @@ class WeatherViewController: UIViewController {
         weatherSource = Weather()
         guard let forecastSource = weatherSource else {return}
         forecastSource.errorDelegate = self
-0
+
+        tableViewForWeatherDate.rowHeight = tableviewRowHeight
+        tableViewForWeatherSource.rowHeight = tableviewRowHeight
+        tableViewForWeatherTarget.rowHeight = tableviewRowHeight
     }
 
     override func didReceiveMemoryWarning() {

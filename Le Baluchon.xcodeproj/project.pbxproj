@@ -28,6 +28,7 @@
 		376503E820AF0C08006B869B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E720AF0C08006B869B /* Weather.swift */; };
 		376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E920AF0C2E006B869B /* ApiQuery.swift */; };
 		376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C90C220CFE35F007E6460 /* WeatherInfos.swift */; };
+		3795F66E20D8FB0100CE7595 /* DateTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F66D20D8FB0000CE7595 /* DateTableCell.swift */; };
 		37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18DCB20C806EA000E9D6B /* TestWeather.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		376503E720AF0C08006B869B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		376503E920AF0C2E006B869B /* ApiQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiQuery.swift; sourceTree = "<group>"; };
 		376C90C220CFE35F007E6460 /* WeatherInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfos.swift; sourceTree = "<group>"; };
+		3795F66D20D8FB0000CE7595 /* DateTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableCell.swift; sourceTree = "<group>"; };
 		37F18DCB20C806EA000E9D6B /* TestWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 			children = (
 				37516B0820D1122A00CB60D2 /* WeatherTableCell.swift */,
 				3761ED0120AD98CA009F86C9 /* Main.storyboard */,
+				3795F66D20D8FB0000CE7595 /* DateTableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */,
 				37516B0120D10D8300CB60D2 /* ErrorDelegateExtension.swift in Sources */,
 				37516B0720D10DCC00CB60D2 /* UITableViewDataSourceExtension.swift in Sources */,
+				3795F66E20D8FB0100CE7595 /* DateTableCell.swift in Sources */,
 				376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */,
 				376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */,
 				37516AFE20D1065900CB60D2 /* Error.swift in Sources */,
