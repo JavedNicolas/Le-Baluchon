@@ -34,7 +34,6 @@
 		3795F67720DA491700CE7595 /* TranslateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67620DA491700CE7595 /* TranslateInfo.swift */; };
 		3795F67A20DA50FD00CE7595 /* TVCErrorDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67920DA50FD00CE7595 /* TVCErrorDelegateExtension.swift */; };
 		3795F67D20DA7CB600CE7595 /* identifiants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67C20DA7CB600CE7595 /* identifiants.swift */; };
-		3795F67F20DA7F1200CE7595 /* _.gitignore_ in Resources */ = {isa = PBXBuildFile; fileRef = 3795F67E20DA7F1200CE7595 /* _.gitignore_ */; };
 		37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18DCB20C806EA000E9D6B /* TestWeather.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +79,6 @@
 		3795F67620DA491700CE7595 /* TranslateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateInfo.swift; sourceTree = "<group>"; };
 		3795F67920DA50FD00CE7595 /* TVCErrorDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCErrorDelegateExtension.swift; sourceTree = "<group>"; };
 		3795F67C20DA7CB600CE7595 /* identifiants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = identifiants.swift; sourceTree = "<group>"; };
-		3795F67E20DA7F1200CE7595 /* _.gitignore_ */ = {isa = PBXFileReference; lastKnownFileType = text; path = _.gitignore_; sourceTree = "<group>"; };
 		37F18DCB20C806EA000E9D6B /* TestWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,7 +204,6 @@
 				3761ED2120ADC61B009F86C9 /* Assets.xcassets */,
 				3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */,
 				3795F67C20DA7CB600CE7595 /* identifiants.swift */,
-				3795F67E20DA7F1200CE7595 /* _.gitignore_ */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -316,7 +313,6 @@
 				3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */,
 				3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */,
 				376503DC20AEBC89006B869B /* Timeless.ttf in Resources */,
-				3795F67F20DA7F1200CE7595 /* _.gitignore_ in Resources */,
 				376503D920AEBAF3006B869B /* The Blacklist.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
