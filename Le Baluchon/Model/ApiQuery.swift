@@ -58,8 +58,10 @@ class ApiQuery {
         guard var urlComp = urlComponent else {return}
 
         urlComp.query = query
-        urlComp.user = queryInfo.userId
-        urlComp.password = queryInfo.password
+        if urlComp.user == "" {
+            urlComp.user = queryInfo.userId
+            urlComp.password = queryInfo.password
+        }
 
         self.urlComponent = urlComp
     }

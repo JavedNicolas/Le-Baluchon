@@ -14,7 +14,7 @@ class Translation : ApiQuery {
     private let prefix = "https://translation.googleapis.com/language/translate/v2"
     private var suffix = ""
     private let format = "text"
-    private let key = "AIzaSyC_aLz3fU5t4Xim7snyYolUPmi-mjdbxxM"
+    private let key = GoogleTranslateApiKey
     var translationText : String?
     var translatedQuery : TranslationQuery?
 
@@ -24,7 +24,7 @@ class Translation : ApiQuery {
 
     func queryForTranslation(sentence : String, sourceLanguage: String, targetLanguage : String, completion : @escaping () -> () ) {
         suffix = "&source=\(sourceLanguage)&target=\(targetLanguage)&format=\(format)"
-        let query = "?key=\(key)&q=\(sentence)\(suffix)"
+        let query = "key=\(key)&q=\(sentence)\(suffix)"
         initQuery(query)
 
         guard let errorDelegate = self.errorDelegate else { return }
