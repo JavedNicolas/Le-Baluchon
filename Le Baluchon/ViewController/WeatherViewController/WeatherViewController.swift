@@ -84,11 +84,6 @@ class WeatherViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func fahrenheitToCelcius( _ temp: Float) -> Float{
-        return (temp - 32) / 1.8
-
-    }
-
     func loading(_ display: Bool) {
         if display == true {
             let title = "Chargement"

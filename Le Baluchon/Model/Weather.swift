@@ -73,7 +73,7 @@ class Weather : ApiQuery {
         Extract usefull infos from the parsed query so we can use them to
         display the forecast and current weather.
     */
-    func extractUsefullInfosFromParsedQuery() {
+    private func extractUsefullInfosFromParsedQuery() {
         guard let forecastChannel = parsedQuery?.query?.results?.channel else { return }
         guard let location = forecastChannel.location else { return }
         guard let forecastInfos = forecastChannel.item?.forecast else { return }
@@ -81,6 +81,18 @@ class Weather : ApiQuery {
 
         self.forecast = Forecast(location, forecastInfos, currentCondition)
 
+    }
+
+    /**
+     Convert fahrenheit temperature to celcius
+
+     - parameters:
+        -  temp : The temperature une fahrenheit
+
+     - returns: The temperature in celcius
+     */
+    func fahrenheitToCelcius( _ temp: Float) -> Float{
+        return (temp - 32) / 1.8
     }
 
 }

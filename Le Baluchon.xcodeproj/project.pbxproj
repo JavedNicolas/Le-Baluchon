@@ -154,8 +154,8 @@
 		3761ED1D20AD996E009F86C9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				37516B0820D1122A00CB60D2 /* WeatherTableCell.swift */,
 				3761ED0120AD98CA009F86C9 /* Main.storyboard */,
+				37516B0820D1122A00CB60D2 /* WeatherTableCell.swift */,
 				3795F66D20D8FB0000CE7595 /* DateTableCell.swift */,
 			);
 			path = View;
