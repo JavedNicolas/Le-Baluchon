@@ -29,6 +29,8 @@
 		376503EA20AF0C2E006B869B /* ApiQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376503E920AF0C2E006B869B /* ApiQuery.swift */; };
 		376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C90C220CFE35F007E6460 /* WeatherInfos.swift */; };
 		3795F66E20D8FB0100CE7595 /* DateTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F66D20D8FB0000CE7595 /* DateTableCell.swift */; };
+		3795F67120DA33B300CE7595 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67020DA33B300CE7595 /* Translation.swift */; };
+		3795F67320DA33D200CE7595 /* TestTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67220DA33D200CE7595 /* TestTranslation.swift */; };
 		37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18DCB20C806EA000E9D6B /* TestWeather.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		376503E920AF0C2E006B869B /* ApiQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiQuery.swift; sourceTree = "<group>"; };
 		376C90C220CFE35F007E6460 /* WeatherInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfos.swift; sourceTree = "<group>"; };
 		3795F66D20D8FB0000CE7595 /* DateTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableCell.swift; sourceTree = "<group>"; };
+		3795F67020DA33B300CE7595 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		3795F67220DA33D200CE7595 /* TestTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTranslation.swift; sourceTree = "<group>"; };
 		37F18DCB20C806EA000E9D6B /* TestWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +136,7 @@
 		3761ECFC20AD98CA009F86C9 /* Le Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				3795F66F20DA338C00CE7595 /* Suporting Files */,
 				3761ED2020AD9995009F86C9 /* Others */,
 				3761ED1D20AD996E009F86C9 /* View */,
 				3761ED1F20AD9981009F86C9 /* ViewController */,
@@ -146,6 +151,7 @@
 			children = (
 				373D80D120BBF2AB00F99065 /* TestApiquery.swift */,
 				37F18DCB20C806EA000E9D6B /* TestWeather.swift */,
+				3795F67220DA33D200CE7595 /* TestTranslation.swift */,
 				3761ED1420AD98CB009F86C9 /* Info.plist */,
 			);
 			path = "Le BaluchonTests";
@@ -167,7 +173,7 @@
 				37516AF820D0FA8300CB60D2 /* Error */,
 				376503E720AF0C08006B869B /* Weather.swift */,
 				376503E920AF0C2E006B869B /* ApiQuery.swift */,
-				376C90C220CFE35F007E6460 /* WeatherInfos.swift */,
+				3795F67020DA33B300CE7595 /* Translation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +199,14 @@
 				3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		3795F66F20DA338C00CE7595 /* Suporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				376C90C220CFE35F007E6460 /* WeatherInfos.swift */,
+			);
+			path = "Suporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +325,7 @@
 				3795F66E20D8FB0100CE7595 /* DateTableCell.swift in Sources */,
 				376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */,
 				376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */,
+				3795F67120DA33B300CE7595 /* Translation.swift in Sources */,
 				37516AFE20D1065900CB60D2 /* Error.swift in Sources */,
 				37516B0920D1122A00CB60D2 /* WeatherTableCell.swift in Sources */,
 				37516B0320D10D9200CB60D2 /* TextfieldDelegateExtension.swift in Sources */,
@@ -323,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */,
+				3795F67320DA33D200CE7595 /* TestTranslation.swift in Sources */,
 				373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
