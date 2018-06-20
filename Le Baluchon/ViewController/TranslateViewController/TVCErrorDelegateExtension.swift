@@ -2,14 +2,14 @@
 //  ErrorDelegateExtension.swift
 //  Le Baluchon
 //
-//  Created by Nicolas on 13/06/2018.
+//  Created by Nicolas on 20/06/2018.
 //  Copyright © 2018 Nicolas. All rights reserved.
 //
 
 import UIKit
 
 // ---------- Error delegate
-extension WeatherViewController : ErrorDelegate {
+extension TranslateViewController : ErrorDelegate {
     func errorHandling(_ sender: Any, _ error: DelegateError) {
         let alert = UIAlertController(title: "Erreur", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -25,6 +25,8 @@ extension WeatherViewController : ErrorDelegate {
         }
 
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

@@ -11,6 +11,23 @@ import XCTest
 
 class TestTranslation: XCTestCase {
 
-    func test
+    var translate : Translation!
+
+    override func setUp() {
+        translate = Translation()
+    }
+
+    func testGivenWeWantToTranslateASentenceWhenTheQueryEndWithSuccessThenWeGetAPositifAnswer() {
+        //Given
+        //in the setUp
+
+        // Given, When
+        translate.queryForTranslation(sentence: "Bonjour", sourceLanguage : "fr", targetLanguage : "en") {
+            // Then
+            if let parsed = self.translate.translationText {
+                XCTAssertNotNil(parsed)
+            }
+        }
+    }
 
 }

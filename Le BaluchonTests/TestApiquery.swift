@@ -39,7 +39,7 @@ class TestApiquery: XCTestCase {
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction")
 
         // When and then
-        apiQuery.launchQuery(success: { (data, statusCode) in
+        apiQuery.launchQuery(success: { data in
             XCTAssertNotNil(data)
         }, failure: { statusCode in })
     }
@@ -49,7 +49,7 @@ class TestApiquery: XCTestCase {
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris")
 
         // When and then
-        apiQuery.launchQuery(success: { (data, statusCode) in}, failure : { (statusCode) in
+        apiQuery.launchQuery(success: { (data) in}, failure : { (statusCode) in
             XCTAssertGreaterThan(statusCode, 299)
         })
     }

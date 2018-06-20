@@ -15,7 +15,6 @@ class Weather : ApiQuery {
     private let password = "b12a7017c524946e5628abf0e83218d0f478b45a"
     private let prefix = "https://query.yahooapis.com/v1/public/yql?"
     private let suffix = "&format=json"
-    var errorDelegate : ErrorDelegate?
 
     // ------ Struct
     struct Forecast {
@@ -47,23 +46,27 @@ class Weather : ApiQuery {
                         and escape the status code.
 
     */
-    func queryForForecast(inTown: String, completion: @escaping (Int) -> ()) {
+    func queryForForecast(inTown: String, completion: @escaping () -> ()) {
         let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')\(suffix)"
         self.initQuery(query)
-        self.launchQuery(success: { (data, statusCode) in
+
+        guard let errorDelegate = self.errorDelegate else { return }
+
+        self.launchQuery(success: { (data) in
             do {
                 self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
-            } catch let parseError {
-                print(parseError)
+            } catch {
+                errorDelegate.errorHandling(self, Error.unknownError)
             }
             self.extractUsefullInfosFromParsedQuery()
-            completion(statusCode)
+            completion()
         }, failure: { (statusCode) in
 
+
             switch statusCode {
-            case 400...499: self.errorDelegate?.errorHandling(self, Error.webClientError)
-            case 500...599: self.errorDelegate?.errorHandling(self, Error.serverError)
-            default : self.errorDelegate?.errorHandling(self, Error.unknownError)
+            case 400...499: errorDelegate.errorHandling(self, Error.webClientError)
+            case 500...599: errorDelegate.errorHandling(self, Error.serverError)
+            default : errorDelegate.errorHandling(self, Error.unknownError)
             }
         })
 
