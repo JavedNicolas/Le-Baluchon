@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		373B16BD20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373B16BC20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift */; };
+		373B16BF20DCDA7100E62971 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 373B16BE20DCDA7100E62971 /* .gitignore */; };
 		373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D80D120BBF2AB00F99065 /* TestApiquery.swift */; };
 		37516AFC20D0FE6E00CB60D2 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37516AFB20D0FE6E00CB60D2 /* ErrorDelegate.swift */; };
 		37516AFE20D1065900CB60D2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37516AFD20D1065900CB60D2 /* Error.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		373B16BC20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCTextViewDelegateExtension.swift; sourceTree = "<group>"; };
+		373B16BE20DCDA7100E62971 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		373D80D120BBF2AB00F99065 /* TestApiquery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApiquery.swift; sourceTree = "<group>"; };
 		37516AFB20D0FE6E00CB60D2 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
 		37516AFD20D1065900CB60D2 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		3761ECF120AD98CA009F86C9 = {
 			isa = PBXGroup;
 			children = (
+				373B16BE20DCDA7100E62971 /* .gitignore */,
 				3761ECFC20AD98CA009F86C9 /* Le Baluchon */,
 				3761ED1120AD98CB009F86C9 /* Le BaluchonTests */,
 				3761ECFB20AD98CA009F86C9 /* Products */,
@@ -312,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3761ED0820AD98CB009F86C9 /* LaunchScreen.storyboard in Resources */,
+				373B16BF20DCDA7100E62971 /* .gitignore in Resources */,
 				376503E020AEC7BE006B869B /* Timeless-Bold.ttf in Resources */,
 				3761ED2220ADC61B009F86C9 /* Assets.xcassets in Resources */,
 				3761ED0320AD98CA009F86C9 /* Main.storyboard in Resources */,
