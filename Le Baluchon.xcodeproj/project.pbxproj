@@ -104,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		373B16C020DCDD2D00E62971 /* PrivateFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3795F67C20DA7CB600CE7595 /* identifiants.swift */,
+			);
+			path = PrivateFiles;
+			sourceTree = "<group>";
+		};
 		37516AF820D0FA8300CB60D2 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +155,7 @@
 		3761ECFC20AD98CA009F86C9 /* Le Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				373B16C020DCDD2D00E62971 /* PrivateFiles */,
 				3761ED2020AD9995009F86C9 /* Others */,
 				3761ED1D20AD996E009F86C9 /* View */,
 				3761ED1F20AD9981009F86C9 /* ViewController */,
@@ -208,7 +217,6 @@
 				3761ECFD20AD98CA009F86C9 /* AppDelegate.swift */,
 				3761ED2120ADC61B009F86C9 /* Assets.xcassets */,
 				3761ED0620AD98CB009F86C9 /* LaunchScreen.storyboard */,
-				3795F67C20DA7CB600CE7595 /* identifiants.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";

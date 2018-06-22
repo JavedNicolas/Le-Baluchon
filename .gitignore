@@ -69,6 +69,7 @@ playground.xcworkspace
 # Packages/
 # Package.pins
 .build/
+.PrivateFiles/
 
 # CocoaPods - Refactored to standalone file
 
@@ -87,5 +88,4 @@ fastlane/screenshots
 fastlane/test_output
 
 ./Others/identifiants.swift
-
 # End of https://www.gitignore.io/api/swift,macos
