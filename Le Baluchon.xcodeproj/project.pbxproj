@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		373B16BD20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373B16BC20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift */; };
 		373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D80D120BBF2AB00F99065 /* TestApiquery.swift */; };
 		37516AFC20D0FE6E00CB60D2 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37516AFB20D0FE6E00CB60D2 /* ErrorDelegate.swift */; };
 		37516AFE20D1065900CB60D2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37516AFD20D1065900CB60D2 /* Error.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		373B16BC20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCTextViewDelegateExtension.swift; sourceTree = "<group>"; };
 		373D80D120BBF2AB00F99065 /* TestApiquery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApiquery.swift; sourceTree = "<group>"; };
 		37516AFB20D0FE6E00CB60D2 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
 		37516AFD20D1065900CB60D2 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				376503E520AEFE1A006B869B /* TranslateViewController.swift */,
 				3795F67920DA50FD00CE7595 /* TVCErrorDelegateExtension.swift */,
+				373B16BC20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift */,
 			);
 			path = TranslateViewController;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				3795F67720DA491700CE7595 /* TranslateInfo.swift in Sources */,
 				3795F66E20D8FB0100CE7595 /* DateTableCell.swift in Sources */,
 				376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */,
+				373B16BD20DCD05B00E62971 /* TVCTextViewDelegateExtension.swift in Sources */,
 				376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */,
 				3795F67120DA33B300CE7595 /* Translation.swift in Sources */,
 				3795F67D20DA7CB600CE7595 /* identifiants.swift in Sources */,

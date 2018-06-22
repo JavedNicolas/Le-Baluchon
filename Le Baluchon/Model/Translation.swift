@@ -33,10 +33,10 @@ class Translation : ApiQuery {
             do {
                 self.translatedQuery = try JSONDecoder().decode(TranslationQuery.self, from: data)
                 self.translationText = self.translatedQuery?.data?.translations?[0].translatedText
-                print(self.translationText)
             }catch{
                 errorDelegate.errorHandling(self, Error.unknownError)
             }
+            completion()
         }) { statusCode in
             switch statusCode {
             case 400...499: errorDelegate.errorHandling(self, Error.webClientError)

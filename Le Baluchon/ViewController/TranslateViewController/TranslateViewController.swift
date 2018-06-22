@@ -27,14 +27,24 @@ class TranslateViewController: UIViewController {
         }
     }
 
-    @IBAction func valider(_ sender: Any) {
+    // ---- Actions
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        sourceTextField.resignFirstResponder()
+        targetTextField.resignFirstResponder()
+    }
+
+    @IBAction func valider() {
 
         guard let translation = translation else { return }
         translation.queryForTranslation(sentence: sourceTextField.text, sourceLanguage: "fr", targetLanguage: "en", completion: {
-            self.targetTextField.text = translation.translationText
+            DispatchQueue.main.async {
+                self.targetTextField.text = translation.translationText
+            }
+
         })
     }
 
+    // ----- method
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 

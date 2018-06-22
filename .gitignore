@@ -86,6 +86,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-Le Baluchon/Others/identifiants.swift
+Others/identifiants.swift
 
 # End of https://www.gitignore.io/api/swift,macos
