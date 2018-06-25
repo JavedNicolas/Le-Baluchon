@@ -10,49 +10,49 @@ import Foundation
 
 // ----- Pathing to get to valuable infos
 struct WeatherQuery : Decodable {
-    var query : WeatherQueryContent?
+    let query : WeatherQueryContent?
 }
 
 struct WeatherQueryContent : Decodable {
-    var created : String?
-    var results : WeatherResults?
+    let created : String?
+    let results : WeatherResults?
 }
 
 struct WeatherResults : Decodable {
-    var channel : WeatherChannel?
+    let channel : WeatherChannel?
 }
 
 struct WeatherChannel : Decodable {
-    var location : WeatherLocation?
-    var item : WeatherForecast?
+    let location : WeatherLocation?
+    let item : WeatherForecast?
 }
 
 // --------  Current condition
 struct WeatherForecast : Decodable {
-    var condition : WeatherCurrentCondition?
-    var forecast : [WeatherCondition]?
+    let condition : WeatherCurrentCondition?
+    let forecast : [WeatherCondition]?
 }
 
 struct WeatherCurrentCondition : Decodable {
-    var date : String?
-    var code : String?
-    var temp : String?
-    var text : String?
+    let date : String?
+    let code : String?
+    let temp : String?
+    let text : String?
 }
 
 // ------- Town and country of forecast
 struct WeatherLocation : Decodable {
-    var city : String?
-    var country : String?
-    var region : String?
+    let city : String?
+    let country : String?
+    let region : String?
 }
 
 // ---- condition for a day of the forecast
 struct WeatherCondition : Decodable {
-    var code : String?
-    var date : String?
-    var day : String?
-    var high : String?
-    var low : String?
-    var text : String?
+    let code : String?
+    let date : String?
+    let day : String?
+    let high : String?
+    let low : String?
+    let text : String?
 }

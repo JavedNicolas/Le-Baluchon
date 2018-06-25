@@ -42,9 +42,9 @@ class WeatherViewController: UIViewController {
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
         { return }
 
-        forecastTarget.queryForForecast(inTown: targetLocation) { statusCode in
+        forecastTarget.queryForForecast(inTown: targetLocation) {
             self.loading(true)
-            forecastSource.queryForForecast(inTown: sourceLocation) { statusCode in
+            forecastSource.queryForForecast(inTown: sourceLocation) {
                 DispatchQueue.main.async {
                     self.tableViewForWeatherTarget.reloadData()
                     self.tableViewForWeatherSource.reloadData()

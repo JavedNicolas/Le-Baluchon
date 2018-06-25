@@ -43,6 +43,9 @@
                                 <state key="normal" title="Valider">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="valider" destination="WfF-2j-4gu" eventType="touchUpInside" id="gv7-UX-r4P"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Français :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIS-gV-dvP">
                                 <rect key="frame" x="10" y="70" width="300" height="23"/>
@@ -71,7 +74,10 @@
                                     <constraint firstAttribute="height" constant="100" id="qga-pB-kWQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="WfF-2j-4gu" id="DuC-uQ-h0M"/>
+                                </connections>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KLh-oN-8h1">
                                 <rect key="frame" x="10" y="246" width="300" height="100"/>
@@ -84,6 +90,7 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="W7e-Mu-aB6" firstAttribute="leading" secondItem="rZ8-QQ-5No" secondAttribute="leading" constant="10" id="0Qm-JH-bRY"/>
                             <constraint firstItem="rZ8-QQ-5No" firstAttribute="trailing" secondItem="KLh-oN-8h1" secondAttribute="trailing" constant="10" id="5Lg-2U-Rzt"/>
@@ -105,10 +112,22 @@
                             <constraint firstItem="W7e-Mu-aB6" firstAttribute="top" secondItem="aUR-ED-Dzp" secondAttribute="bottom" constant="10" id="zx7-5W-ElM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rZ8-QQ-5No"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1ic-wF-pBo" appends="YES" id="Ba4-fF-jUP"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Traduction" image="translateIcon" id="JUo-9g-eXX"/>
+                    <connections>
+                        <outlet property="sourceTextField" destination="aUR-ED-Dzp" id="uo0-oJ-3mU"/>
+                        <outlet property="targetTextField" destination="KLh-oN-8h1" id="EmT-mX-gZd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQN-If-irI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1ic-wF-pBo">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="WfF-2j-4gu" id="Grs-lc-eQf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1382" y="-190"/>
         </scene>
