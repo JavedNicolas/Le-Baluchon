@@ -33,6 +33,7 @@
 		376AB45E20E0CB4D00439E46 /* Translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 376AB45D20E0CB4D00439E46 /* Translate.json */; };
 		376AB46120E0D35E00439E46 /* FakeWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376AB46020E0D35E00439E46 /* FakeWeatherData.swift */; };
 		376AB46320E0D75500439E46 /* FakeTranslateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376AB46220E0D75500439E46 /* FakeTranslateData.swift */; };
+		376AB46620E0D8E500439E46 /* FakeSessionOverload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376AB46520E0D8E500439E46 /* FakeSessionOverload.swift */; };
 		376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C90C220CFE35F007E6460 /* WeatherInfos.swift */; };
 		3795F66E20D8FB0100CE7595 /* DateTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F66D20D8FB0000CE7595 /* DateTableCell.swift */; };
 		3795F67120DA33B300CE7595 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67020DA33B300CE7595 /* Translation.swift */; };
@@ -84,6 +85,7 @@
 		376AB45D20E0CB4D00439E46 /* Translate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Translate.json; sourceTree = "<group>"; };
 		376AB46020E0D35E00439E46 /* FakeWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWeatherData.swift; sourceTree = "<group>"; };
 		376AB46220E0D75500439E46 /* FakeTranslateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTranslateData.swift; sourceTree = "<group>"; };
+		376AB46520E0D8E500439E46 /* FakeSessionOverload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSessionOverload.swift; sourceTree = "<group>"; };
 		376C90C220CFE35F007E6460 /* WeatherInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfos.swift; sourceTree = "<group>"; };
 		3795F66D20D8FB0000CE7595 /* DateTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableCell.swift; sourceTree = "<group>"; };
 		3795F67020DA33B300CE7595 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				376AB46420E0D7C700439E46 /* FakeDataClasses */,
 				376AB45F20E0CE9400439E46 /* JsonReponseFile */,
+				376AB46520E0D8E500439E46 /* FakeSessionOverload.swift */,
 			);
 			path = FakeClassFiles;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */,
 				376AB46120E0D35E00439E46 /* FakeWeatherData.swift in Sources */,
 				3795F67320DA33D200CE7595 /* TestTranslation.swift in Sources */,
+				376AB46620E0D8E500439E46 /* FakeSessionOverload.swift in Sources */,
 				376AB46320E0D75500439E46 /* FakeTranslateData.swift in Sources */,
 				373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */,
 			);

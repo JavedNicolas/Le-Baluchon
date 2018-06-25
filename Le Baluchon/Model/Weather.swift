@@ -37,6 +37,12 @@ class Weather : ApiQuery {
         super.init(prefix, id, password)
     }
 
+    init(session : URLSession, dataTask: URLSessionDataTask){
+        super.init(prefix, id, password)
+        self.defaultSessions = session
+        self.dataTask = dataTask
+    }
+
     /**
      Launch the query to get the last forecast for a given town
 
@@ -76,7 +82,7 @@ class Weather : ApiQuery {
         Extract usefull infos from the parsed query so we can use them to
         display the forecast and current weather.
     */
-    private func extractUsefullInfosFromParsedQuery() {
+    func extractUsefullInfosFromParsedQuery() {
         guard let forecastChannel = parsedQuery?.query?.results?.channel else { return }
         guard let location = forecastChannel.location else { return }
         guard let forecastInfos = forecastChannel.item?.forecast else { return }

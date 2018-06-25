@@ -26,8 +26,8 @@ class ApiQuery {
     // ---- attribut
     private var queryPrefix : String
     private var queryInfo : Query
-    private let defaultSessions = URLSession(configuration: .default)
-    private var dataTask : URLSessionDataTask?
+    internal var defaultSessions = URLSession(configuration: .default)
+    internal var dataTask : URLSessionDataTask?
     var urlComponent : URLComponents?
     var errorDelegate : ErrorDelegate?
 

@@ -22,6 +22,12 @@ class Translation : ApiQuery {
         super.init(prefix, "", "")
     }
 
+    init(session : URLSession, dataTask: URLSessionDataTask){
+        super.init(prefix, "", "")
+        self.defaultSessions = session
+        self.dataTask = dataTask
+    }
+
     func queryForTranslation(sentence : String, sourceLanguage: String, targetLanguage : String, completion : @escaping () -> () ) {
         suffix = "&source=\(sourceLanguage)&target=\(targetLanguage)&format=\(format)"
         let query = "key=\(key)&q=\(sentence)\(suffix)"
