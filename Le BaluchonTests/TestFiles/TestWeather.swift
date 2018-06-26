@@ -17,9 +17,10 @@ class TestWeather: XCTestCase {
         weather = Weather()
     }
 
-    func testGivenWeWantToGetTheForecastWhenTheQueryEndWithSuccessThenWeGetIt() {
+    func testIfWeWantAskForWeatherThenWeGetData() {
         //Given
-        //in the setUp
+        weather = Weather(session: FakeUrlSession(data: FakeWeatherData., response: <#T##URLResponse?#>, error: <#T##Error?#>))
+        
 
         // When
         weather.queryForForecast(inTown: "Paris, fr") {

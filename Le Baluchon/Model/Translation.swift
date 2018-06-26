@@ -22,10 +22,9 @@ class Translation : ApiQuery {
         super.init(prefix, "", "")
     }
 
-    init(session : URLSession, dataTask: URLSessionDataTask){
+    init(session : URLSession){
         super.init(prefix, "", "")
         self.defaultSessions = session
-        self.dataTask = dataTask
     }
 
     func queryForTranslation(sentence : String, sourceLanguage: String, targetLanguage : String, completion : @escaping () -> () ) {

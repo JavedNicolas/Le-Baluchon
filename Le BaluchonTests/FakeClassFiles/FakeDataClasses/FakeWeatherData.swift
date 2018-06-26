@@ -18,7 +18,7 @@ class FakeWeatherData {
 
     // --- fake data from server
     var correctData : Data {
-        let url = Bundle(for: FakeWeatherData.self).url(forResource: "Weahter", withExtension: "json")
+        let url = Bundle(for: FakeWeatherData.self).url(forResource: "Weather", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
     }

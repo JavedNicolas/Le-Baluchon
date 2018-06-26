@@ -37,10 +37,9 @@ class Weather : ApiQuery {
         super.init(prefix, id, password)
     }
 
-    init(session : URLSession, dataTask: URLSessionDataTask){
+    init(session : URLSession){
         super.init(prefix, id, password)
         self.defaultSessions = session
-        self.dataTask = dataTask
     }
 
     /**

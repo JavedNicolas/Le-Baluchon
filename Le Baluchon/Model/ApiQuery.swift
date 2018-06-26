@@ -27,7 +27,7 @@ class ApiQuery {
     private var queryPrefix : String
     private var queryInfo : Query
     internal var defaultSessions = URLSession(configuration: .default)
-    internal var dataTask : URLSessionDataTask?
+    private var dataTask : URLSessionDataTask?
     var urlComponent : URLComponents?
     var errorDelegate : ErrorDelegate?
 
