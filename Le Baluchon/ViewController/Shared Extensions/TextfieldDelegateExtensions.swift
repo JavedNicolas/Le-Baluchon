@@ -34,5 +34,4 @@ extension TranslateViewController : UITextViewDelegate {
         }
         return true
     }
-
 }
