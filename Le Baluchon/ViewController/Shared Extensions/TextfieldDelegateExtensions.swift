@@ -10,6 +10,7 @@ import UIKit
 
 
 //------- Ui textfiled delegate
+// ------Weather
 extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.returnKeyType{
@@ -23,7 +24,7 @@ extension WeatherViewController: UITextFieldDelegate {
     }
 }
 
-//------- Ui textfiled delegate
+//------- Translate
 extension TranslateViewController : UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         switch textView.returnKeyType {
@@ -31,6 +32,20 @@ extension TranslateViewController : UITextViewDelegate {
         case .done : valider()
         textView.resignFirstResponder()
         default : textView.resignFirstResponder()
+        }
+        return true
+    }
+}
+
+//------- Change
+extension ChangeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.returnKeyType{
+        case .default: textField.resignFirstResponder()
+        case .done : valider()
+        textField.resignFirstResponder()
+        case .next : amoutTextfield.becomeFirstResponder()
+        default : textField.resignFirstResponder()
         }
         return true
     }

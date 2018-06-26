@@ -11,7 +11,7 @@ import Foundation
 class Translation : ApiQuery {
 
     //----- Attribut
-    private let prefix = "https://translation.googleapis.com/language/translate/v2"
+    private let endPoint = "https://translation.googleapis.com/language/translate/v2"
     private var suffix = ""
     private let format = "text"
     private let key = GoogleTranslateApiKey
@@ -19,7 +19,7 @@ class Translation : ApiQuery {
     var translatedQuery : TranslationQuery?
 
     init() {
-        super.init(prefix, "", "")
+        super.init(endPoint, "", "")
     }
 
     func queryForTranslation(sentence : String, sourceLanguage: String, targetLanguage : String, completion : @escaping () -> () ) {

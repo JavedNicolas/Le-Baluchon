@@ -52,3 +52,13 @@ extension TranslateViewController : ErrorDelegate {
         }
     }
 }
+
+// ---------- Change
+extension ChangeViewController : ErrorDelegate {
+    func errorHandling(_ sender: Any, _ error: DelegateError) {
+        let alert = createErrorAlert(error: error)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}

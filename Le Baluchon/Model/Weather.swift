@@ -13,7 +13,7 @@ class Weather : ApiQuery {
     // ----- Query Attribut
     private let id = YahooWeatherId
     private let password = YahooWeatherPassword
-    private let prefix = "https://query.yahooapis.com/v1/public/yql?"
+    private let endPoint = "https://query.yahooapis.com/v1/public/yql?"
     private let suffix = "&format=json"
 
     // ------ Struct
@@ -34,7 +34,7 @@ class Weather : ApiQuery {
     var forecast : Forecast?
 
     init(){
-        super.init(prefix, id, password)
+        super.init(endPoint, id, password)
     }
 
     /**
