@@ -35,7 +35,6 @@
 		3795F67120DA33B300CE7595 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67020DA33B300CE7595 /* Translation.swift */; };
 		3795F67320DA33D200CE7595 /* TestTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67220DA33D200CE7595 /* TestTranslation.swift */; };
 		3795F67720DA491700CE7595 /* TranslateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67620DA491700CE7595 /* TranslateInfo.swift */; };
-		3795F67D20DA7CB600CE7595 /* identifiants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795F67C20DA7CB600CE7595 /* identifiants.swift */; };
 		37F18DCD20C806EA000E9D6B /* TestWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18DCB20C806EA000E9D6B /* TestWeather.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +81,6 @@
 		3795F67020DA33B300CE7595 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		3795F67220DA33D200CE7595 /* TestTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTranslation.swift; sourceTree = "<group>"; };
 		3795F67620DA491700CE7595 /* TranslateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateInfo.swift; sourceTree = "<group>"; };
-		3795F67C20DA7CB600CE7595 /* identifiants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = identifiants.swift; sourceTree = "<group>"; };
 		37F18DCB20C806EA000E9D6B /* TestWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +114,6 @@
 		373B16C020DCDD2D00E62971 /* PrivateFiles */ = {
 			isa = PBXGroup;
 			children = (
-				3795F67C20DA7CB600CE7595 /* identifiants.swift */,
 			);
 			path = PrivateFiles;
 			sourceTree = "<group>";
@@ -360,7 +357,6 @@
 				376503E420AEFE10006B869B /* ChangeViewController.swift in Sources */,
 				376C90C320CFE360007E6460 /* WeatherInfos.swift in Sources */,
 				3795F67120DA33B300CE7595 /* Translation.swift in Sources */,
-				3795F67D20DA7CB600CE7595 /* identifiants.swift in Sources */,
 				37516AFE20D1065900CB60D2 /* Error.swift in Sources */,
 				37516B0920D1122A00CB60D2 /* WeatherTableCell.swift in Sources */,
 				37516B0320D10D9200CB60D2 /* TextfieldDelegateExtensions.swift in Sources */,
