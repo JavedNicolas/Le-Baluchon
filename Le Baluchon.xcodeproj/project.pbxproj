@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3712B72220E23155007E9492 /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712B72120E23155007E9492 /* Change.swift */; };
 		3712B72420E2389B007E9492 /* ChangeInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712B72320E2389B007E9492 /* ChangeInfos.swift */; };
+		37186CDD20E3A68300501AA5 /* Identifiants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37186CDC20E3A68300501AA5 /* Identifiants.swift */; };
 		373B16BF20DCDA7100E62971 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 373B16BE20DCDA7100E62971 /* .gitignore */; };
 		373D80D220BBF2AB00F99065 /* TestApiquery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D80D120BBF2AB00F99065 /* TestApiquery.swift */; };
 		37516AFC20D0FE6E00CB60D2 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37516AFB20D0FE6E00CB60D2 /* ErrorDelegate.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		3712B72120E23155007E9492 /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		3712B72320E2389B007E9492 /* ChangeInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfos.swift; sourceTree = "<group>"; };
+		37186CDC20E3A68300501AA5 /* Identifiants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiants.swift; sourceTree = "<group>"; };
 		373B16BE20DCDA7100E62971 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		373D80D120BBF2AB00F99065 /* TestApiquery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApiquery.swift; sourceTree = "<group>"; };
 		37516AFB20D0FE6E00CB60D2 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		373B16C020DCDD2D00E62971 /* PrivateFiles */ = {
 			isa = PBXGroup;
 			children = (
+				37186CDC20E3A68300501AA5 /* Identifiants.swift */,
 			);
 			path = PrivateFiles;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				37516B0320D10D9200CB60D2 /* TextfieldDelegateExtensions.swift in Sources */,
 				3712B72220E23155007E9492 /* Change.swift in Sources */,
 				3761ECFE20AD98CA009F86C9 /* AppDelegate.swift in Sources */,
+				37186CDD20E3A68300501AA5 /* Identifiants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
