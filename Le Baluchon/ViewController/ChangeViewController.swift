@@ -14,7 +14,9 @@ class ChangeViewController: UIViewController {
 
     @IBOutlet weak var targetSegmentedControl: UISegmentedControl!
     @IBOutlet weak var amoutTextfield: UITextField!
+    @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var separator: UIView!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -23,6 +25,7 @@ class ChangeViewController: UIViewController {
     struct Money {
         var apiName : String
         var symbol : String
+        var name : String
     }
 
 
@@ -48,15 +51,14 @@ class ChangeViewController: UIViewController {
     // ---- action
     @IBAction func valider() {
         if let change = change {
-
             let changeName = getSegmentedControlText(targetSegmentedControl)
             guard let amoutString = amoutTextfield.text else {
                 change.errorDelegate!.errorHandling(self, Error.emptyFiled)
                 return
             }
-            
+            titleLabel.text = "Conversion de euro à \(changeName.name)"
+            separator.isHidden = false
             let amout = NSString(string: amoutString).doubleValue
-
             change.queryForChange(changeName.apiName) {
                 guard let result = change.rateResult, let date = result.date else { return }
                 guard let rate = result.rates, let rateValue = rate[changeName.apiName] else { return }
@@ -83,11 +85,11 @@ class ChangeViewController: UIViewController {
     func getSegmentedControlText(_ segmentedControl : UISegmentedControl) -> Money {
         let index = segmentedControl.selectedSegmentIndex
         switch index {
-        case 0: return Money(apiName: "USD",symbol: "$")
-        case 1: return Money(apiName: "JPY", symbol: "¥")
-        case 2: return Money(apiName:"GBP",symbol:"£")
+        case 0: return Money(apiName: "USD", symbol: "$", name: "Dollar")
+        case 1: return Money(apiName: "JPY", symbol: "¥",name: "Yen Japonaise")
+        case 2: return Money(apiName:"GBP", symbol:"£",name: "Livre Anglaise")
         default:
-            return Money(apiName: "USD",symbol: "$")
+            return Money(apiName: "USD", symbol: "$",name: "Dollar")
         }
     }
     
