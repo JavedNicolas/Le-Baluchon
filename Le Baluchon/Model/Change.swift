@@ -12,7 +12,7 @@ class Change : ApiQuery {
 
     private var endPoint = "http://data.fixer.io/api/latest"
     private var suffix = ""
-    private var key = FixerApiKey
+    private var key = fixerApiKey
 
     var rateResult : ChangeQuery?
 

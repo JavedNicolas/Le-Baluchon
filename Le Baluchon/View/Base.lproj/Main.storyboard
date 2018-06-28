@@ -294,44 +294,6 @@
             </objects>
             <point key="canvasLocation" x="605.625" y="590"/>
         </scene>
-        <!--Réglage-->
-        <scene sceneID="ATN-J2-Kgx">
-            <objects>
-                <viewController id="q1u-U5-JPU" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1ir-wf-7rv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lan-0K-gc3">
-                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
-                                <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="pXv-hn-fSF"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FVy-FJ-mE9">
-                                <rect key="frame" x="0.0" y="60" width="320" height="371"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="lan-0K-gc3" firstAttribute="top" secondItem="qst-t3-Ndi" secondAttribute="top" id="EVi-EL-5zG"/>
-                            <constraint firstItem="FVy-FJ-mE9" firstAttribute="top" secondItem="lan-0K-gc3" secondAttribute="bottom" id="ItF-8m-eeS"/>
-                            <constraint firstItem="qst-t3-Ndi" firstAttribute="bottom" secondItem="FVy-FJ-mE9" secondAttribute="bottom" id="MV1-vz-oB6"/>
-                            <constraint firstItem="qst-t3-Ndi" firstAttribute="trailing" secondItem="FVy-FJ-mE9" secondAttribute="trailing" id="MmP-jp-f25"/>
-                            <constraint firstItem="FVy-FJ-mE9" firstAttribute="leading" secondItem="qst-t3-Ndi" secondAttribute="leading" id="pa9-aw-NIB"/>
-                            <constraint firstItem="lan-0K-gc3" firstAttribute="leading" secondItem="qst-t3-Ndi" secondAttribute="leading" id="qXz-F2-TL2"/>
-                            <constraint firstAttribute="trailing" secondItem="lan-0K-gc3" secondAttribute="trailing" id="xrf-kH-aBN"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qst-t3-Ndi"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Réglage" image="settingsIcon" id="Dk4-pj-AId"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y8o-od-kS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1383" y="591"/>
-        </scene>
         <!--Méteo-->
         <scene sceneID="efC-DL-whD">
             <objects>
@@ -673,7 +635,6 @@
                         <segue destination="xgY-pf-qra" kind="relationship" relationship="viewControllers" id="fwn-eW-wFw"/>
                         <segue destination="WfF-2j-4gu" kind="relationship" relationship="viewControllers" id="ZUk-bE-TWd"/>
                         <segue destination="gsb-4J-hph" kind="relationship" relationship="viewControllers" id="4fv-D1-YEV"/>
-                        <segue destination="q1u-U5-JPU" kind="relationship" relationship="viewControllers" id="I5M-6c-99o"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0EV-Dt-ste" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -684,7 +645,6 @@
     <resources>
         <image name="currencyChangeIcon" width="29" height="29"/>
         <image name="myLocationIcon" width="20" height="20"/>
-        <image name="settingsIcon" width="29" height="29"/>
         <image name="translateIcon" width="29" height="29"/>
         <image name="weatherIcon" width="29" height="29"/>
     </resources>
