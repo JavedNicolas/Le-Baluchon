@@ -11,12 +11,20 @@ import UIKit
 class ChangeViewController: UIViewController {
 
     // ------ Outlet
-    @IBOutlet weak var targetTextfield: UITextField!
+
+    @IBOutlet weak var targetSegmentedControl: UISegmentedControl!
     @IBOutlet weak var amoutTextfield: UITextField!
 
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+
+    // ----- struct
+    struct Money {
+        var apiName : String
+        var symbol : String
+    }
+
 
     // ---- Attribut
     private var change : Change?
@@ -41,10 +49,7 @@ class ChangeViewController: UIViewController {
     @IBAction func valider() {
         if let change = change {
 
-            guard let changeName = targetTextfield.text else {
-                change.errorDelegate!.errorHandling(self, Error.emptyFiled)
-                return
-            }
+            let changeName = getSegmentedControlText(targetSegmentedControl)
             guard let amoutString = amoutTextfield.text else {
                 change.errorDelegate!.errorHandling(self, Error.emptyFiled)
                 return
@@ -52,12 +57,12 @@ class ChangeViewController: UIViewController {
             
             let amout = NSString(string: amoutString).doubleValue
 
-            change.queryForChange(changeName) {
+            change.queryForChange(changeName.apiName) {
                 guard let result = change.rateResult, let date = result.date else { return }
-                guard let rate = result.rates, let rateValue = rate[changeName] else { return }
+                guard let rate = result.rates, let rateValue = rate[changeName.apiName] else { return }
 
-                self.resultLabel.text = "\(self.formatDoubles(change.conversion(rateValue, amout))) \(changeName) "
-                self.rateLabel.text = "Taux de : \(self.formatDoubles(rateValue)) \(changeName) pour 1 EUR"
+                self.resultLabel.text = "\(self.formatDoubles(change.conversion(rateValue, amout))) \(changeName.symbol) "
+                self.rateLabel.text = "Taux de : \(self.formatDoubles(rateValue)) \(changeName.symbol) pour 1 €"
                 self.dateLabel.text = "Dernière mise à jours le \(date)"
             }
         }
@@ -65,7 +70,6 @@ class ChangeViewController: UIViewController {
 
     // ---- Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
-        targetTextfield.resignFirstResponder()
         amoutTextfield.resignFirstResponder()
     }
 
@@ -74,8 +78,19 @@ class ChangeViewController: UIViewController {
         let numberAsString = String(format: "%.2f", numberToFormat)
         let number = NSString(string: numberAsString).doubleValue
         return number
-
     }
+
+    func getSegmentedControlText(_ segmentedControl : UISegmentedControl) -> Money {
+        let index = segmentedControl.selectedSegmentIndex
+        switch index {
+        case 0: return Money(apiName: "USD",symbol: "$")
+        case 1: return Money(apiName: "JPY", symbol: "¥")
+        case 2: return Money(apiName:"GBP",symbol:"£")
+        default:
+            return Money(apiName: "USD",symbol: "$")
+        }
+    }
+    
 }
 
 

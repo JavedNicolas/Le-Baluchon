@@ -145,15 +145,15 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hUM-au-TKD">
                                         <rect key="frame" x="20" y="20" width="280" height="70"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="USD" borderStyle="roundedRect" placeholder="Devise cible" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OuX-Rp-Ph9">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="gsb-4J-hph" id="Np5-73-qzW"/>
-                                                </connections>
-                                            </textField>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XiZ-ID-taP">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
+                                                <segments>
+                                                    <segment title="Dollar"/>
+                                                    <segment title="Yen"/>
+                                                    <segment title="Livre"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5b-f2-stf">
                                                 <rect key="frame" x="0.0" y="40" width="280" height="30"/>
                                                 <subviews>
@@ -178,19 +178,16 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="WtZ-dJ-TmX" secondAttribute="trailing" id="3dC-7r-gJK"/>
-                                                    <constraint firstItem="U7a-ba-yIA" firstAttribute="top" secondItem="a5b-f2-stf" secondAttribute="top" id="D7J-Va-0oV"/>
                                                     <constraint firstAttribute="bottom" secondItem="WtZ-dJ-TmX" secondAttribute="bottom" id="RSd-qk-ObS"/>
                                                     <constraint firstItem="WtZ-dJ-TmX" firstAttribute="top" secondItem="a5b-f2-stf" secondAttribute="top" id="UPC-Hw-Bbf"/>
-                                                    <constraint firstItem="U7a-ba-yIA" firstAttribute="leading" secondItem="a5b-f2-stf" secondAttribute="leading" id="m9Z-Az-0x7"/>
-                                                    <constraint firstAttribute="bottom" secondItem="U7a-ba-yIA" secondAttribute="bottom" id="xRe-We-MkN"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="XiZ-ID-taP" firstAttribute="leading" secondItem="hUM-au-TKD" secondAttribute="leading" id="6G3-k4-wmv"/>
                                             <constraint firstAttribute="bottom" secondItem="a5b-f2-stf" secondAttribute="bottom" id="JJ8-Ee-eDg"/>
-                                            <constraint firstAttribute="trailing" secondItem="OuX-Rp-Ph9" secondAttribute="trailing" id="ZUT-3R-Wr4"/>
                                             <constraint firstItem="a5b-f2-stf" firstAttribute="leading" secondItem="hUM-au-TKD" secondAttribute="leading" id="dy2-zL-8rC"/>
-                                            <constraint firstItem="OuX-Rp-Ph9" firstAttribute="leading" secondItem="hUM-au-TKD" secondAttribute="leading" id="g5u-Yq-SQH"/>
+                                            <constraint firstAttribute="trailing" secondItem="XiZ-ID-taP" secondAttribute="trailing" id="kB3-eK-INR"/>
                                             <constraint firstAttribute="trailing" secondItem="a5b-f2-stf" secondAttribute="trailing" id="wMY-bj-aYS"/>
                                         </constraints>
                                     </stackView>
@@ -283,7 +280,7 @@
                         <outlet property="dateLabel" destination="TEv-4y-1O1" id="hwH-LE-3Sq"/>
                         <outlet property="rateLabel" destination="8Lm-2L-VPA" id="rNd-4C-QoD"/>
                         <outlet property="resultLabel" destination="isI-3V-MZb" id="lDC-de-0e3"/>
-                        <outlet property="targetTextfield" destination="OuX-Rp-Ph9" id="lZw-wD-9IT"/>
+                        <outlet property="targetSegmentedControl" destination="XiZ-ID-taP" id="xZx-Yg-3W0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A3L-DU-vKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
