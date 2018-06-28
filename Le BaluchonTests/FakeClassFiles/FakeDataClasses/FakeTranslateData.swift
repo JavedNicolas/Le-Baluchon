@@ -27,7 +27,4 @@ class FakeTranslateData {
         return "erreur".data(using: .utf8)!
     }
 
-    class TranslateError : Error {}
-    let error = TranslateError()
-
 }

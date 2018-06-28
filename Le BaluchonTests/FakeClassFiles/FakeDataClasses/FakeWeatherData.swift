@@ -11,22 +11,20 @@ import Foundation
 class FakeWeatherData {
 
     // ----- fake reponse from server
-    let responseOK = HTTPURLResponse.init(url: URL(string: "http://openclassroom.com")!,
+    static let responseOK = HTTPURLResponse.init(url: URL(string: "http://openclassroom.com")!,
                                           statusCode: 200, httpVersion: nil, headerFields: [:])
-    let responseKO = HTTPURLResponse.init(url: URL(string: "http://openclassroom.com")!,
+    static let responseKO = HTTPURLResponse.init(url: URL(string: "http://openclassroom.com")!,
                                           statusCode: 200, httpVersion: nil, headerFields: [:])
 
     // --- fake data from server
-    var correctData : Data {
+    static var correctData : Data {
         let url = Bundle(for: FakeWeatherData.self).url(forResource: "Weather", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
     }
 
-    var wrongData : Data {
+    static var wrongData : Data {
         return "erreur".data(using: .utf8)!
     }
 
-    class WeatherError : Error {}
-    let error = WeatherError()
 }

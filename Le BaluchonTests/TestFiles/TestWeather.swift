@@ -14,31 +14,37 @@ class TestWeather: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        weather = Weather()
     }
 
-    func testIfWeWantAskForWeatherThenWeGetData() {
+    func testIfWeAskForWeatherThenWeGetCorrectDataAndParseIt() {
         //Given
-        weather = Weather(session: FakeUrlSession(data: FakeWeatherData., response: <#T##URLResponse?#>, error: <#T##Error?#>))
-        
+        let fakeUrlSession = FakeUrlSession(data: FakeWeatherData.correctData, response: FakeWeatherData.responseOK, error: nil)
+        let weather = Weather(session: fakeUrlSession)
+        let expectation = XCTestExpectation(description: "Wait for queue change")
 
         // When
         weather.queryForForecast(inTown: "Paris, fr") {
             // Then
-            if let parsed = self.weather.parsedQuery {
-                XCTAssertNotNil(parsed)
+            if let parsedData = self.weather.parsedQuery {
+                XCTAssertNotNil(parsedData)
+                expectation.fulfill()
             }
         }
+        wait(for: [expectation], timeout: 0.01)
     }
 
-    func testGivenWeWantForecaseInfosWhenWeTheQueryWasParsedThenCreateAStructWithUsefullInfos(){
+    func testGivenWeGotASuccessfullRequestThenWeWantTOExtractUsefullInfoOfParsedParsedData(){
         // Given & then
+        let fakeUrlSession = FakeUrlSession(data: FakeWeatherData.correctData, response: FakeWeatherData.responseOK, error: nil)
+        let weather = Weather(session: fakeUrlSession )
+        let expectation = XCTestExpectation(description: "Wait for queue change")
 
         weather.queryForForecast(inTown: "Paris, fr") {
             // Then
             self.weather.extractUsefullInfosFromParsedQuery()
             XCTAssertNotNil(self.weather.forecast)
-
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 0.01)
     }
 }

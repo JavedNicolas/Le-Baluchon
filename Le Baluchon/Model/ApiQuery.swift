@@ -84,15 +84,16 @@ class ApiQuery {
 
             dataTask = defaultSessions.dataTask(with: url) { data, reponse, error in
                 let reponseCode = reponse as? HTTPURLResponse
+                DispatchQueue.main.async {
+                    guard let code = reponseCode?.statusCode else {return}
 
-                guard let code = reponseCode?.statusCode else {return}
-
-                if error != nil {
-                    failure(code)
-                } else if let data = data, code >= 200 && code < 300 {
-                    success(data)
-                } else if code >= 300 {
-                    failure(code)
+                    if error != nil {
+                        failure(code)
+                    } else if let data = data, code >= 200 && code < 300 {
+                            success(data)
+                    } else if code >= 300 {
+                        failure(code)
+                    }
                 }
             }
             dataTask?.resume()

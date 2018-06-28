@@ -66,8 +66,6 @@ class Weather : ApiQuery {
             self.extractUsefullInfosFromParsedQuery()
             completion()
         }, failure: { (statusCode) in
-
-
             switch statusCode {
             case 400...499: errorDelegate.errorHandling(self, Error.webClientError)
             case 500...599: errorDelegate.errorHandling(self, Error.serverError)
