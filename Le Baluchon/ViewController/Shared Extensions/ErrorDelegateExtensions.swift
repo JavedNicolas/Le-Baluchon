@@ -37,9 +37,8 @@ func createErrorAlert(error: DelegateError) -> UIAlertController {
 extension WeatherViewController : ErrorDelegate {
     func errorHandling(_ sender: Any, _ error: DelegateError) {
         let alert = createErrorAlert(error: error)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.present(alert, animated: true, completion: nil)
+
     }
 }
 
@@ -47,9 +46,8 @@ extension WeatherViewController : ErrorDelegate {
 extension TranslateViewController : ErrorDelegate {
     func errorHandling(_ sender: Any, _ error: DelegateError) {
         let alert = createErrorAlert(error: error)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.present(alert, animated: true, completion: nil)
+
     }
 }
 
@@ -57,8 +55,6 @@ extension TranslateViewController : ErrorDelegate {
 extension ChangeViewController : ErrorDelegate {
     func errorHandling(_ sender: Any, _ error: DelegateError) {
         let alert = createErrorAlert(error: error)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.present(alert, animated: true, completion: nil)
     }
 }

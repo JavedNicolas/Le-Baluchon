@@ -39,18 +39,25 @@ class ChangeViewController: UIViewController {
 
     // ---- action
     @IBAction func valider() {
-
-        guard let changeName = targetTextfield.text else { return }
-        guard let amoutString = amoutTextfield.text else { return }
-        let amout = NSString(string: amoutString).doubleValue
-
         if let change = change {
+
+            guard let changeName = targetTextfield.text else {
+                change.errorDelegate!.errorHandling(self, Error.emptyFiled)
+                return
+            }
+            guard let amoutString = amoutTextfield.text else {
+                change.errorDelegate!.errorHandling(self, Error.emptyFiled)
+                return
+            }
+            
+            let amout = NSString(string: amoutString).doubleValue
+
             change.queryForChange(changeName) {
                 guard let result = change.rateResult, let date = result.date else { return }
                 guard let rate = result.rates, let rateValue = rate[changeName] else { return }
 
-                self.resultLabel.text = "\(change.conversion(rateValue, amout))\(changeName)  "
-                self.rateLabel.text = "Taux de : \(rateValue)\(changeName) pour 1EUR"
+                self.resultLabel.text = "\(self.formatDoubles(change.conversion(rateValue, amout))) \(changeName) "
+                self.rateLabel.text = "Taux de : \(self.formatDoubles(rateValue)) \(changeName) pour 1 EUR"
                 self.dateLabel.text = "Dernière mise à jours le \(date)"
             }
         }
@@ -61,4 +68,14 @@ class ChangeViewController: UIViewController {
         targetTextfield.resignFirstResponder()
         amoutTextfield.resignFirstResponder()
     }
+
+    //----- func
+    func formatDoubles(_ numberToFormat: Double) -> Double {
+        let numberAsString = String(format: "%.2f", numberToFormat)
+        let number = NSString(string: numberAsString).doubleValue
+        return number
+
+    }
 }
+
+
