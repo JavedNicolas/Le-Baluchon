@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     // ---- Outlets
     @IBOutlet weak var textfieldSourceLocation: UITextField!
@@ -27,12 +28,16 @@ class WeatherViewController: UIViewController {
     internal var weatherSource: Weather?
     private let tableviewRowHeight = CGFloat(130)
     private var alert : UIAlertController!
-
+    private let locationManager = CLLocationManager()
 
     // ---- Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
         textfieldSourceLocation.resignFirstResponder()
         textfieldTargetLocation.resignFirstResponder()
+    }
+
+    @IBAction func currentLocationFromButton() {
+        getLocation()
     }
 
     @IBAction func valider() {
@@ -75,7 +80,45 @@ class WeatherViewController: UIViewController {
         tableViewForWeatherDate.rowHeight = tableviewRowHeight
         tableViewForWeatherSource.rowHeight = tableviewRowHeight
         tableViewForWeatherTarget.rowHeight = tableviewRowHeight
+        launchPositionLocation()
+        getLocation()
     }
+
+    func launchPositionLocation() {
+        locationManager.requestWhenInUseAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+    }
+
+    func getLocation() {
+        let geocoder = CLGeocoder()
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            guard let forecastTarget = self.weatherTarget,
+                let errorDelegate = forecastTarget.errorDelegate else {return}
+            guard let location = locationManager.location else {
+                errorDelegate.errorHandling(self, Error.localisationProblem)
+                return
+            }
+            
+            geocoder.reverseGeocodeLocation(location) { (placemark, error) in
+                if (error != nil) {
+                    errorDelegate.errorHandling(self, Error.localisationProblem)
+                }else {
+                    guard let placemark = placemark, let lastLocation = placemark.last, let city = lastLocation.locality else {
+                        errorDelegate.errorHandling(self, Error.localisationProblem)
+                        return
+                    }
+                    self.textfieldSourceLocation.text = city
+                }
+            }
+        }
+
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -92,7 +135,6 @@ class WeatherViewController: UIViewController {
             alert.dismiss(animated: true, completion: nil)
         }
     }
-
 }
 
 

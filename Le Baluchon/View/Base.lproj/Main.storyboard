@@ -361,6 +361,9 @@
                                                         <state key="normal" image="myLocationIcon">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="currentLocationFromButton:" destination="xgY-pf-qra" eventType="touchUpInside" id="N4o-ea-fnT"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -603,6 +606,7 @@
                     <connections>
                         <outlet property="buttonSourceLocation" destination="K7U-t1-bSe" id="dEV-gq-rVU"/>
                         <outlet property="buttonValidate" destination="khT-Cr-DJA" id="OUM-ho-qHC"/>
+                        <outlet property="currentLocationFromButton" destination="K7U-t1-bSe" id="TYG-H5-YXc"/>
                         <outlet property="dateLabel" destination="2Ey-3G-A7P" id="Ev4-Ht-Dtx"/>
                         <outlet property="sourceLabel" destination="uCU-KT-ytN" id="96F-S2-WEo"/>
                         <outlet property="tableViewForWeatherDate" destination="SeY-s3-tjV" id="IVm-Rd-6yg"/>
