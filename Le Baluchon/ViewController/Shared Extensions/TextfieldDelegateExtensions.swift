@@ -27,12 +27,8 @@ extension WeatherViewController: UITextFieldDelegate {
 //------- Translate
 extension TranslateViewController : UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        switch textView.returnKeyType {
-        case .default: textView.resignFirstResponder()
-        case .done : valider()
+        self.valider()
         textView.resignFirstResponder()
-        default : textView.resignFirstResponder()
-        }
         return true
     }
 }

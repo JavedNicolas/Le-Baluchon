@@ -37,31 +37,34 @@ extension WeatherViewController : UITableViewDataSource {
     */
     private func setConditionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConditionCell", for: indexPath) as! WeatherTableCell
-        if let forecastInfosTarget = weatherTarget?.forecast, let forecastInfosSource = weatherSource?.forecast, let weather = weatherTarget {
-            var forecastInfo : Weather.Forecast!
-            switch tableView {
-            case self.tableViewForWeatherTarget :
-                forecastInfo = forecastInfosTarget
-            case self.tableViewForWeatherSource :
-                forecastInfo = forecastInfosSource
-            default :
-                break
-            }
-
-            guard let text = forecastInfo.forecast[indexPath.row].text, let low = forecastInfo.forecast[indexPath.row].low,
-                let high = forecastInfo.forecast[indexPath.row].high, let code = forecastInfo.forecast[indexPath.row].code
-                else { return cell }
-
-            cell.weatherTextLabel.text = text
-            guard let lowCelcius = Float(low), let highCelcius = Float(high) else {return cell}
-            let roundedLowCelcius = String(format: "%.0F" , weather.fahrenheitToCelcius(lowCelcius))
-            let roundedHighCelcius = String(format : "%.0F", weather.fahrenheitToCelcius(highCelcius))
-            cell.temperatureLabel.text = "Entre \(roundedLowCelcius )°C et :\(roundedHighCelcius)°C"
-
-            let url = URL(string: "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/\(code)d.png")
-            let data = try? Data(contentsOf: url!)
-            cell.weahterImageView.image = UIImage(data: data!)
+        guard let forecastInfosTarget = weatherTarget?.forecast, let forecastInfosSource = weatherSource?.forecast,
+        let weather = weatherTarget else { return cell }
+        var forecastInfo : Weather.Forecast!
+        switch tableView {
+        case self.tableViewForWeatherTarget :
+            forecastInfo = forecastInfosTarget
+        case self.tableViewForWeatherSource :
+            forecastInfo = forecastInfosSource
+        default :
+            break
         }
+
+        guard let text = forecastInfo.forecast[indexPath.row].text, let low = forecastInfo.forecast[indexPath.row].low,
+            let high = forecastInfo.forecast[indexPath.row].high, let code = forecastInfo.forecast[indexPath.row].code
+            else { return cell }
+
+        cell.weatherTextLabel.text = text
+
+        guard let lowCelcius = Float(low), let highCelcius = Float(high) else {return cell}
+        let roundedLowCelcius = String(format: "%.0F" , weather.fahrenheitToCelcius(lowCelcius))
+        let roundedHighCelcius = String(format : "%.0F", weather.fahrenheitToCelcius(highCelcius))
+        cell.temperatureLabel.text = "Entre \(roundedLowCelcius )°C et :\(roundedHighCelcius)°C"
+
+        let url = URL(string: "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/\(code)d.png")
+        let data = try? Data(contentsOf: url!)
+        cell.weahterImageView.image = UIImage(data: data!)
+
+
         return cell
     }
 
@@ -87,4 +90,5 @@ extension WeatherViewController : UITableViewDataSource {
         }
         return cell
     }
+
 }

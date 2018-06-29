@@ -74,7 +74,7 @@
                                     <constraint firstAttribute="height" constant="100" id="qga-pB-kWQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                                 <connections>
                                     <outlet property="delegate" destination="WfF-2j-4gu" id="DuC-uQ-h0M"/>
                                 </connections>
@@ -113,7 +113,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rZ8-QQ-5No"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="1ic-wF-pBo" appends="YES" id="Ba4-fF-jUP"/>
+                            <outletCollection property="gestureRecognizers" destination="1ic-wF-pBo" appends="YES" id="c3X-vb-6og"/>
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Traduction" image="translateIcon" id="JUo-9g-eXX"/>
@@ -161,7 +161,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="gsb-4J-hph" id="4Uq-X3-bRB"/>
                                                         </connections>
@@ -249,6 +249,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Sol-JU-f4P" firstAttribute="top" secondItem="isI-3V-MZb" secondAttribute="bottom" constant="5" id="0S0-NA-dTu"/>
                             <constraint firstItem="8Lm-2L-VPA" firstAttribute="top" secondItem="Sol-JU-f4P" secondAttribute="bottom" constant="5" id="8Jw-2Q-58Q"/>
@@ -273,6 +274,9 @@
                             <constraint firstAttribute="trailing" secondItem="L7h-c1-LGt" secondAttribute="trailing" id="xXZ-o3-klV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8bN-qZ-u7c"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="FGw-7X-2pv" appends="YES" id="BSc-ca-VNq"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Taux de change" image="currencyChangeIcon" id="klP-eB-OOB"/>
                     <connections>

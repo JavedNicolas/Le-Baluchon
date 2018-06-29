@@ -45,20 +45,18 @@ class WeatherViewController: UIViewController {
         forecastTarget.queryForForecast(inTown: targetLocation) {
             self.loading(true)
             forecastSource.queryForForecast(inTown: sourceLocation) {
-                DispatchQueue.main.async {
-                    self.tableViewForWeatherTarget.reloadData()
-                    self.tableViewForWeatherSource.reloadData()
-                    self.tableViewForWeatherDate.reloadData()
+                self.tableViewForWeatherTarget.reloadData()
+                self.tableViewForWeatherSource.reloadData()
+                self.tableViewForWeatherDate.reloadData()
 
-                    guard let locationSource = forecastSource.forecast?.location.city else { return }
-                    guard let locationTarget = forecastTarget.forecast?.location.city else { return }
+                guard let locationSource = forecastSource.forecast?.location.city else { return }
+                guard let locationTarget = forecastTarget.forecast?.location.city else { return }
 
-                    self.sourceLabel.text = locationSource
-                    self.targetLabel.text = locationTarget
-                    self.dateLabel.text = "Date"
+                self.sourceLabel.text = locationSource
+                self.targetLabel.text = locationTarget
+                self.dateLabel.text = "Date"
 
-                    self.loading(false)
-                }
+                self.loading(false)
             }
         }
     }
