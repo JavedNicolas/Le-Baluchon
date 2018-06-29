@@ -130,14 +130,13 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		37516AFF20D10D6600CB60D2 /* WeatherViewController */ = {
+		37516AFF20D10D6600CB60D2 /* WeatherViewController extension */ = {
 			isa = PBXGroup;
 			children = (
-				376503E120AEFE03006B869B /* WeatherViewController.swift */,
 				37516B0420D10DB900CB60D2 /* WVCUITableViewDelegateExtension.swift */,
 				37516B0620D10DCC00CB60D2 /* WVCUITableViewDataSourceExtension.swift */,
 			);
-			path = WeatherViewController;
+			path = "WeatherViewController extension";
 			sourceTree = "<group>";
 		};
 		3761ECF120AD98CA009F86C9 = {
@@ -210,8 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				3712B72020E224A2007E9492 /* Shared Extensions */,
-				37516AFF20D10D6600CB60D2 /* WeatherViewController */,
+				37516AFF20D10D6600CB60D2 /* WeatherViewController extension */,
 				376503E320AEFE10006B869B /* ChangeViewController.swift */,
+				376503E120AEFE03006B869B /* WeatherViewController.swift */,
 				376503E520AEFE1A006B869B /* TranslateViewController.swift */,
 			);
 			path = ViewController;

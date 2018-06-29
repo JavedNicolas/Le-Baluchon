@@ -22,6 +22,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var dateLabel : UILabel!
     @IBOutlet weak var sourceLabel : UILabel!
     @IBOutlet weak var targetLabel : UILabel!
+    @IBOutlet weak var currentPositionButton: UIButton!
 
     // ---- properties
     internal var weatherTarget: Weather?
@@ -36,7 +37,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         textfieldTargetLocation.resignFirstResponder()
     }
 
-    @IBAction func currentLocationFromButton() {
+    @IBAction func getCurrentLocationFormButton(_ sender: Any) {
         getLocation()
     }
 
@@ -115,6 +116,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     self.textfieldSourceLocation.text = city
                 }
             }
+        }else {
+            currentPositionButton.isHidden = true
         }
 
     }
