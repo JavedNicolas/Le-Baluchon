@@ -75,9 +75,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
-                                <connections>
-                                    <outlet property="delegate" destination="WfF-2j-4gu" id="DuC-uQ-h0M"/>
-                                </connections>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KLh-oN-8h1">
                                 <rect key="frame" x="10" y="246" width="300" height="100"/>
@@ -157,7 +154,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5b-f2-stf">
                                                 <rect key="frame" x="0.0" y="40" width="280" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U7a-ba-yIA">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="U7a-ba-yIA">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -216,21 +213,21 @@
                                     <action selector="valider" destination="gsb-4J-hph" eventType="touchUpInside" id="3Ld-60-x1W"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38E-te-Nta">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38E-te-Nta">
                                 <rect key="frame" x="20" y="130" width="280" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Timeless-Bold" family="Timeless" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Timeless-Bold" family="Timeless" pointSize="22"/>
                                 <color key="textColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isI-3V-MZb">
                                 <rect key="frame" x="20" y="160" width="280" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Timeless-Normal" family="Timeless" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Timeless-Normal" family="Timeless" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lm-2L-VPA">
-                                <rect key="frame" x="20" y="171" width="280" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Timeless-Normal" family="Timeless" pointSize="17"/>
+                                <rect key="frame" x="20" y="191" width="280" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Timeless-Normal" family="Timeless" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -241,7 +238,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sol-JU-f4P">
-                                <rect key="frame" x="50" y="165" width="220" height="1"/>
+                                <rect key="frame" x="50" y="175" width="220" height="1"/>
                                 <color key="backgroundColor" red="0.43176951142131981" green="0.43176951142131981" blue="0.43176951142131981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="kv3-sg-jpW"/>
@@ -251,8 +248,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Sol-JU-f4P" firstAttribute="top" secondItem="isI-3V-MZb" secondAttribute="bottom" constant="5" id="0S0-NA-dTu"/>
-                            <constraint firstItem="8Lm-2L-VPA" firstAttribute="top" secondItem="Sol-JU-f4P" secondAttribute="bottom" constant="5" id="8Jw-2Q-58Q"/>
+                            <constraint firstItem="Sol-JU-f4P" firstAttribute="top" secondItem="isI-3V-MZb" secondAttribute="bottom" constant="15" id="0S0-NA-dTu"/>
+                            <constraint firstItem="8Lm-2L-VPA" firstAttribute="top" secondItem="Sol-JU-f4P" secondAttribute="bottom" constant="15" id="8Jw-2Q-58Q"/>
                             <constraint firstItem="isI-3V-MZb" firstAttribute="top" secondItem="38E-te-Nta" secondAttribute="bottom" constant="30" id="CsI-Ww-T9B"/>
                             <constraint firstItem="fZM-JB-9wk" firstAttribute="top" secondItem="TEv-4y-1O1" secondAttribute="bottom" constant="5" id="DJN-IW-ddL"/>
                             <constraint firstItem="Sol-JU-f4P" firstAttribute="leading" secondItem="8bN-qZ-u7c" secondAttribute="leading" constant="50" id="GC4-Ux-uMR"/>
@@ -347,7 +344,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9M-NM-OUX">
                                                 <rect key="frame" x="0.0" y="33.5" width="280" height="23"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lieux actuel" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fhv-qz-fbS">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lieux actuel" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="fhv-qz-fbS">
                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="23"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -370,7 +367,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zcv-yS-EAr">
                                                 <rect key="frame" x="0.0" y="66.5" width="280" height="23.5"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lieux à comparer" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ldc-qC-Prc">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lieux à comparer" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ldc-qC-Prc">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="23.5"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

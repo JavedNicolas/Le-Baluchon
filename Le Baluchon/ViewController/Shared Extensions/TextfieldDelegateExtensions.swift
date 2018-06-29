@@ -24,15 +24,6 @@ extension WeatherViewController: UITextFieldDelegate {
     }
 }
 
-//------- Translate
-extension TranslateViewController : UITextViewDelegate {
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        self.valider()
-        textView.resignFirstResponder()
-        return true
-    }
-}
-
 //------- Change
 extension ChangeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

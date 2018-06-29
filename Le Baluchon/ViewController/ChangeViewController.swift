@@ -31,6 +31,7 @@ class ChangeViewController: UIViewController {
 
     // ---- Attribut
     private var change : Change?
+    private var alert : UIAlertController!
 
     // ---- func
     override func viewDidLoad() {
@@ -51,21 +52,26 @@ class ChangeViewController: UIViewController {
     // ---- action
     @IBAction func valider() {
         if let change = change {
+            loading(true)
             let changeName = getSegmentedControlText(targetSegmentedControl)
             guard let amoutString = amoutTextfield.text else {
                 change.errorDelegate!.errorHandling(self, Error.emptyFiled)
+                loading(false)
                 return
             }
-            titleLabel.text = "Conversion de euro à \(changeName.name)"
-            separator.isHidden = false
+
             let amout = NSString(string: amoutString).doubleValue
             change.queryForChange(changeName.apiName) {
+                self.titleLabel.text = "Conversion de euro à \(changeName.name)"
+                self.separator.isHidden = false
                 guard let result = change.rateResult, let date = result.date else { return }
                 guard let rate = result.rates, let rateValue = rate[changeName.apiName] else { return }
 
                 self.resultLabel.text = "\(self.formatDoubles(change.conversion(rateValue, amout))) \(changeName.symbol) "
                 self.rateLabel.text = "Taux de : \(self.formatDoubles(rateValue)) \(changeName.symbol) pour 1 €"
                 self.dateLabel.text = "Dernière mise à jours le \(date)"
+                self.loading(false)
+                self.amoutTextfield.resignFirstResponder()
             }
         }
     }
@@ -90,6 +96,17 @@ class ChangeViewController: UIViewController {
         case 2: return Money(apiName:"GBP", symbol:"£",name: "Livre Anglaise")
         default:
             return Money(apiName: "USD", symbol: "$",name: "Dollar")
+        }
+    }
+
+    func loading(_ display: Bool) {
+        if display == true {
+            let title = "Chargement"
+            let message = "Les taux de changes sont en cours de chargement. \n Merci de bien vouloir patienter ..."
+            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+        }else{
+            alert.dismiss(animated: true, completion: nil)
         }
     }
     

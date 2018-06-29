@@ -30,6 +30,7 @@ class Change : ApiQuery {
         launchQuery(success: { (data) in
             do {
                 self.rateResult = try JSONDecoder().decode(ChangeQuery.self, from: data)
+                completionHandler()
             } catch {
                 errorDelegate.errorHandling(self, Error.unknownError)
             }
@@ -40,7 +41,7 @@ class Change : ApiQuery {
             default: errorDelegate.errorHandling(self, Error.unknownError)
             }
         }
-        completionHandler()
+
     }
 
     func conversion(_ rate : Double, _ amout : Double) -> Double {
