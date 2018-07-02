@@ -38,7 +38,10 @@ extension WeatherViewController : UITableViewDataSource {
     private func setConditionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConditionCell", for: indexPath) as! WeatherTableCell
         guard let forecastInfosTarget = weatherTarget?.forecast, let forecastInfosSource = weatherSource?.forecast,
-        let weather = weatherTarget else { return cell }
+        let weather = weatherTarget else {
+            self.errorHandling(self, Error.unknownError)
+            return cell
+        }
         var forecastInfo : Weather.Forecast!
         switch tableView {
         case self.tableViewForWeatherTarget :
@@ -49,11 +52,15 @@ extension WeatherViewController : UITableViewDataSource {
             break
         }
 
-        guard let text = forecastInfo.forecast[indexPath.row].text, let low = forecastInfo.forecast[indexPath.row].low,
-            let high = forecastInfo.forecast[indexPath.row].high, let code = forecastInfo.forecast[indexPath.row].code
-            else { return cell }
+        guard let low = forecastInfo.forecast[indexPath.row].low,
+            let high = forecastInfo.forecast[indexPath.row].high, let code = forecastInfo.forecast[indexPath.row].code,
+            let codeAsInt = Int(code)
+            else {
+                self.errorHandling(self, Error.unknownError)
+                return cell
+            }
 
-        cell.weatherTextLabel.text = text
+        cell.weatherTextLabel.text = weatherCodes[codeAsInt]
 
         guard let lowCelcius = Float(low), let highCelcius = Float(high) else {return cell}
         let roundedLowCelcius = String(format: "%.0F" , weather.fahrenheitToCelcius(lowCelcius))
@@ -63,7 +70,6 @@ extension WeatherViewController : UITableViewDataSource {
         let url = URL(string: "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/\(code)d.png")
         let data = try? Data(contentsOf: url!)
         cell.weahterImageView.image = UIImage(data: data!)
-
 
         return cell
     }
@@ -83,10 +89,24 @@ extension WeatherViewController : UITableViewDataSource {
 
             guard let day = forecastInfosTarget.forecast[indexPath.row].day,
                 let date = forecastInfosTarget.forecast[indexPath.row].date
-                else { return cell }
+                else {
+                    self.errorHandling(self, Error.unknownError)
+                    return cell
+                }
 
-            cell.dayLabel.text = day
-            cell.dateLabel.text = date
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "dd-MMM-yyyy"
+
+            if let date = dateFormatter.date(from: date) {
+                dateFormatter.locale = Locale(identifier: "fr")
+                dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dd-MMMM", options: 0, locale: dateFormatter.locale)
+                let frenchDate = dateFormatter.string(from: date)
+                cell.dayLabel.text = enToFrDay[day]
+                cell.dateLabel.text = frenchDate
+            } else {
+                self.errorHandling(self, Error.unknownError)
+            }
         }
         return cell
     }
