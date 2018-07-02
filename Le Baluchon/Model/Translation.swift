@@ -23,7 +23,7 @@ class Translation : ApiQuery {
     }
 
     init(session : URLSession){
-        super.init(prefix, "", "")
+        super.init(endPoint, "", "")
         self.defaultSessions = session
     }
 
