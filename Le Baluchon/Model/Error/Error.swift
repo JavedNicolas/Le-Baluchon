@@ -13,4 +13,6 @@ enum Error : String, DelegateError{
     case webClientError = "Une erreur est survenue, veuillez verifier votre connexion internet ou les informations de votre demande."
     case serverError = "Une erreur est survenue sur le serveur. Merci de bien vouloir ressayez plus tard"
     case unknownError = "Une erreur est survenue. Merci de bien vouloir ressayez plus tard"
+    case emptyFiled = "Il faut remplir tout les champs !"
+    case localisationProblem = "Nous n'arrivons pas à vous localiser !"
 }

@@ -24,7 +24,7 @@ class ApiQuery {
     }
 
     // ---- attribut
-    private var queryPrefix : String
+    private var queryEndPoint : String
     private var queryInfo : Query
     internal var defaultSessions = URLSession(configuration: .default)
     private var dataTask : URLSessionDataTask?
@@ -44,7 +44,7 @@ class ApiQuery {
         - password : Password of the user
      */
     init(_ apistring: String, _ userId : String, _ password: String) {
-        self.queryPrefix = apistring
+        self.queryEndPoint = apistring
         queryInfo = Query("", userId, password)
     }
 
@@ -53,7 +53,7 @@ class ApiQuery {
      like id, password and apistring
      */
     func initQuery(_ query : String) {
-        self.urlComponent = URLComponents(string: queryPrefix)
+        self.urlComponent = URLComponents(string: queryEndPoint)
 
         guard var urlComp = urlComponent else {return}
 

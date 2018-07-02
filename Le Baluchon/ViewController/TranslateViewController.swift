@@ -16,7 +16,7 @@ class TranslateViewController: UIViewController {
 
     // ----- attributs
     private var translation : Translation?
-    internal var alert : UIAlertController?
+    internal var alert : UIAlertController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +34,15 @@ class TranslateViewController: UIViewController {
     }
 
     @IBAction func valider() {
-
-        guard let translation = translation else { return }
+        guard let translation = translation else {
+            self.errorHandling(self, Error.unknownError)
+            return
+        }
+        
+        loading(true)
         translation.queryForTranslation(sentence: sourceTextField.text, sourceLanguage: "fr", targetLanguage: "en", completion: {
-            DispatchQueue.main.async {
-                self.targetTextField.text = translation.translationText
-            }
-
+            self.targetTextField.text = translation.translationText
+            self.loading(false)
         })
     }
 
@@ -48,6 +50,17 @@ class TranslateViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+
+    func loading(_ display: Bool) {
+        if display == true {
+            let title = "Chargement"
+            let message = "La traduction est en cours. \n Merci de bien vouloir patienter ..."
+            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+        }else{
+            alert.dismiss(animated: true, completion: nil)
+        }
     }
 
 }
