@@ -6,8 +6,8 @@ The file can be put in the PrivateFiles folder et musk look like this (with your
 
 import Foundation
 
-let YahooWeatherId = ""
-let YahooWeatherPassword = ""
-let GoogleTranslateApiKey = ""
-let fixerApiKey = ""
+let YahooWeatherId = ""  
+let YahooWeatherPassword = ""  
+let GoogleTranslateApiKey = ""  
+let fixerApiKey = ""  
 
