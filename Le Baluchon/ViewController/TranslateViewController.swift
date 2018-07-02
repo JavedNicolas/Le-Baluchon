@@ -34,7 +34,11 @@ class TranslateViewController: UIViewController {
     }
 
     @IBAction func valider() {
-        guard let translation = translation else { return }
+        guard let translation = translation else {
+            self.errorHandling(self, Error.unknownError)
+            return
+        }
+        
         loading(true)
         translation.queryForTranslation(sentence: sourceTextField.text, sourceLanguage: "fr", targetLanguage: "en", completion: {
             self.targetTextField.text = translation.translationText

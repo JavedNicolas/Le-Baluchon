@@ -43,10 +43,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBAction func valider() {
 
-        guard let forecastTarget = weatherTarget, let forecastSource = weatherSource else {return}
+        guard let forecastTarget = weatherTarget, let forecastSource = weatherSource else {
+            self.errorHandling(self, Error.unknownError)
+            return
+        }
 
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
-        { return }
+        {
+            self.errorHandling(self, Error.unknownError)
+            return
+        }
 
         forecastTarget.queryForForecast(inTown: targetLocation) {
             self.loading(true)

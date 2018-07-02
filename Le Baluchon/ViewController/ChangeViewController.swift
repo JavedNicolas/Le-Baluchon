@@ -64,8 +64,14 @@ class ChangeViewController: UIViewController {
             change.queryForChange(changeName.apiName) {
                 self.titleLabel.text = "Conversion de euro à \(changeName.name)"
                 self.separator.isHidden = false
-                guard let result = change.rateResult, let date = result.date else { return }
-                guard let rate = result.rates, let rateValue = rate[changeName.apiName] else { return }
+                guard let result = change.rateResult, let date = result.date else {
+                    self.errorHandling(self, Error.unknownError)
+                    return
+                }
+                guard let rate = result.rates, let rateValue = rate[changeName.apiName] else {
+                    self.errorHandling(self, Error.unknownError)
+                    return
+                }
 
                 self.resultLabel.text = "\(self.formatDoubles(change.conversion(rateValue, amout))) \(changeName.symbol) "
                 self.rateLabel.text = "Taux de : \(self.formatDoubles(rateValue)) \(changeName.symbol) pour 1 €"
@@ -73,6 +79,8 @@ class ChangeViewController: UIViewController {
                 self.loading(false)
                 self.amoutTextfield.resignFirstResponder()
             }
+        }else {
+            self.errorHandling(self, Error.unknownError)
         }
     }
 
