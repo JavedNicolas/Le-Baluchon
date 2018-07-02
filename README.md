@@ -1,0 +1,13 @@
+# Le-Baluchon
+
+To use the app you need to create a files with Yahoo Weather acount and api key for fixer.io and google translate.
+The file can be put in the PrivateFiles folder et musk look like this (with your value put in the variables)
+
+
+import Foundation
+
+let YahooWeatherId = ""
+let YahooWeatherPassword = ""
+let GoogleTranslateApiKey = ""
+let fixerApiKey = ""
+
