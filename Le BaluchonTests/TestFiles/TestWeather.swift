@@ -16,7 +16,7 @@ class TestWeather: XCTestCase {
         super.setUp()
     }
 
-    func testIfWeAskForWeatherThenWeGetCorrectDataAndParseIt() {
+    func testGivenWeAskForWeatherThenWeGetCorrectDataAndParseIt() {
         //Given
         let fakeUrlSession = FakeUrlSession(data: FakeWeatherData.correctData, response: FakeWeatherData.responseOK, error: nil)
         let weather = Weather(session: fakeUrlSession)

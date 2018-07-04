@@ -48,6 +48,12 @@ class ApiQuery {
         queryInfo = Query("", userId, password)
     }
 
+    init(session : URLSession){
+        defaultSessions = session
+        self.queryEndPoint = ""
+        queryInfo = Query("", "", "")
+    }
+
     /**
      Init the Query with the query and informations in the class
      like id, password and apistring

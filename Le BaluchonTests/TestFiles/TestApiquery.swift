@@ -19,22 +19,27 @@ class TestApiquery: XCTestCase {
                             "b12a7017c524946e5628abf0e83218d0f478b45a")
     }
 
-    func testGivenWeWantToInitializeAQueryWhenWeDoItThenWeGetAnURLComponentWithQueryAndUserAndPassword() {
+    func testGivenWeWantToMakeAQueryThenWeHaveToInitQueryIDAndPassword() {
         //Given
+
+
         // in the setUp
 
         // When
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction")
 
         // Then
-        guard let urlComponent = apiQuery.urlComponent, let query = urlComponent.query, let user = urlComponent.user,
-            let password = urlComponent.password else {return}
+        let urlComponent = apiQuery.urlComponent
+        let query = urlComponent!.query
+        let user = urlComponent!.user
+        let password = urlComponent!.password
+
         XCTAssertNotNil(query)
         XCTAssertNotNil(user)
         XCTAssertNotNil(password)
     }
 
-    func testGivenToDoAQueryWhenTheQueryEndWithSuccesThenWeGetTheResult() {
+    func testGivenWeDoAQueryWhenTheQueryEndWithSuccesWeGetTheResult() {
         // Given
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris, fr')&format=json&callback=callbackFunction")
 
@@ -44,7 +49,7 @@ class TestApiquery: XCTestCase {
         }, failure: { statusCode in })
     }
 
-    func testGivenToDoAQueryWhenTheQueryEndWithAnErrorThenWeGetAnError() {
+    func testGivenWeDoAQueryWhenTheQueryEndWithAnErrorThenWeGetAnError() {
         // Given
         apiQuery.initQuery("select wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Paris")
 

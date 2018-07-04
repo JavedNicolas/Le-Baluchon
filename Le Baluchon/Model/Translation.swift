@@ -22,7 +22,7 @@ class Translation : ApiQuery {
         super.init(endPoint, "", "")
     }
 
-    init(session : URLSession){
+    override init(session : URLSession){
         super.init(endPoint, "", "")
         self.defaultSessions = session
     }

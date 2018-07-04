@@ -37,7 +37,7 @@ class Weather : ApiQuery {
         super.init(endPoint, id, password)
     }
 
-    init(session : URLSession){
+    override init(session : URLSession){
         super.init(endPoint, id, password)
         self.defaultSessions = session
     }
