@@ -96,7 +96,7 @@ class ApiQuery {
                     if error != nil {
                         failure(code)
                     } else if let data = data, code >= 200 && code < 300 {
-                            success(data)
+                        success(data)
                     } else if code >= 300 {
                         failure(code)
                     }

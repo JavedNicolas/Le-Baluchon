@@ -41,5 +41,6 @@ class FakeUrlSessionDataTask : URLSessionDataTask {
     override func resume() {
         completionHandler?(data, httpResponse, queryError)
     }
+
     override func cancel() {}
 }

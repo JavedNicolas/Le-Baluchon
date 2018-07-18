@@ -13,18 +13,17 @@ class TranslateViewController: UIViewController {
     // ------ outlets
     @IBOutlet weak var sourceTextField: UITextView!
     @IBOutlet weak var targetTextField: UITextView!
+    @IBOutlet weak var validateButton: UIButton!
+     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // ----- attributs
     private var translation : Translation?
-    internal var alert : UIAlertController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        translation = Translation()
+        loading(false)
+        Translation.shared.errorDelegate = self
 
-        if let translation = translation {
-            translation.errorDelegate = self
-        }
     }
 
     // ---- Actions
@@ -34,14 +33,12 @@ class TranslateViewController: UIViewController {
     }
 
     @IBAction func valider() {
-        guard let translation = translation else {
-            self.errorHandling(self, Error.unknownError)
-            return
-        }
-        
         loading(true)
-        translation.queryForTranslation(sentence: sourceTextField.text, sourceLanguage: "fr", targetLanguage: "en", completion: {
-            self.targetTextField.text = translation.translationText
+
+        Translation.shared.queryForTranslation(sentence: sourceTextField.text, completion: { success in
+            if success {
+                self.targetTextField.text = Translation.shared.translationText
+            }
             self.loading(false)
         })
     }
@@ -49,18 +46,16 @@ class TranslateViewController: UIViewController {
     // ----- method
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
 
-    func loading(_ display: Bool) {
-        if display == true {
-            let title = "Chargement"
-            let message = "La traduction est en cours. \n Merci de bien vouloir patienter ..."
-            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            present(alert, animated: true, completion: nil)
-        }else{
-            alert.dismiss(animated: true, completion: nil)
+    private func loading(_ isLoading: Bool ) {
+        activityIndicator.isHidden = !isLoading
+        if isLoading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
         }
+        validateButton.isHidden = isLoading
     }
 
 }

@@ -23,12 +23,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var sourceLabel : UILabel!
     @IBOutlet weak var targetLabel : UILabel!
     @IBOutlet weak var currentPositionButton: UIButton!
+    @IBOutlet weak var validateButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // ---- properties
     internal var weatherTarget: Weather?
     internal var weatherSource: Weather?
     private let tableviewRowHeight = CGFloat(130)
-    private var alert : UIAlertController!
     private let locationManager = CLLocationManager()
 
     // ---- Actions
@@ -42,32 +43,38 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     @IBAction func valider() {
-
+        loading(true)
         guard let forecastTarget = weatherTarget, let forecastSource = weatherSource else {
             self.errorHandling(self, Error.unknownError)
+            loading(false)
             return
         }
 
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
         {
             self.errorHandling(self, Error.unknownError)
+            loading(false)
             return
         }
 
-        forecastTarget.queryForForecast(inTown: targetLocation) {
-            self.loading(true)
-            forecastSource.queryForForecast(inTown: sourceLocation) {
-                self.tableViewForWeatherTarget.reloadData()
-                self.tableViewForWeatherSource.reloadData()
-                self.tableViewForWeatherDate.reloadData()
+        forecastTarget.queryForForecast(inTown: targetLocation) { successTarget in
+            if successTarget {
+                forecastSource.queryForForecast(inTown: sourceLocation) { successSource in
+                    if successSource {
+                        self.tableViewForWeatherTarget.reloadData()
+                        self.tableViewForWeatherSource.reloadData()
+                        self.tableViewForWeatherDate.reloadData()
 
-                guard let locationSource = forecastSource.forecast?.location.city else { return }
-                guard let locationTarget = forecastTarget.forecast?.location.city else { return }
+                        guard let locationSource = forecastSource.forecast?.location.city else { return }
+                        guard let locationTarget = forecastTarget.forecast?.location.city else { return }
 
-                self.sourceLabel.text = locationSource
-                self.targetLabel.text = locationTarget
-                self.dateLabel.text = "Date"
-
+                        self.sourceLabel.text = locationSource
+                        self.targetLabel.text = locationTarget
+                        self.dateLabel.text = "Date"
+                    }
+                    self.loading(false)
+                }
+            }else {
                 self.loading(false)
             }
         }
@@ -76,6 +83,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     // ---- functions
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        loading(false)
         weatherTarget = Weather()
         guard let forecastTarget = weatherTarget else {return}
         forecastTarget.errorDelegate = self
@@ -128,21 +137,20 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     }
 
+    private func loading(_ isLoading: Bool ) {
+        activityIndicator.isHidden = !isLoading
+        if isLoading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        validateButton.isHidden = isLoading
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func loading(_ display: Bool) {
-        if display == true {
-            let title = "Chargement"
-            let message = "Les prévisions météo sont en cours de chargement. \n Merci de bien vouloir patienter ..."
-            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            present(alert, animated: true, completion: nil)
-        }else{
-            alert.dismiss(animated: true, completion: nil)
-        }
     }
 }
 

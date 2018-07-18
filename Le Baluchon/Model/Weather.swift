@@ -8,24 +8,15 @@
 
 import Foundation
 
-class Weather : ApiQuery {
-
-    // ----- Query Attribut
-    private let id = YahooWeatherId
-    private let password = YahooWeatherPassword
-    private let endPoint = "https://query.yahooapis.com/v1/public/yql?"
-    private let suffix = "&format=json"
-
+class Weather{
     // ------ Struct
     struct Forecast {
         var location : WeatherLocation
         var forecast : [WeatherCondition]
-        var currentCondition : WeatherCurrentCondition
 
-        init (_ location : WeatherLocation, _ forecast : [WeatherCondition], _ currentCondition: WeatherCurrentCondition){
+        init (_ location : WeatherLocation, _ forecast : [WeatherCondition]){
             self.location = location
             self.forecast = forecast
-            self.currentCondition = currentCondition
         }
     }
 
@@ -33,13 +24,14 @@ class Weather : ApiQuery {
     var parsedQuery : WeatherQuery?
     var forecast : Forecast?
 
-    init(){
-        super.init(endPoint, id, password)
-    }
+    private var session = URLSession(configuration: .default)
+    private var task : URLSessionTask?
+    var errorDelegate : ErrorDelegate?
 
-    override init(session : URLSession){
-        super.init(endPoint, id, password)
-        self.defaultSessions = session
+    init() {}
+
+    init(session : URLSession){
+        self.session = session
     }
 
     /**
@@ -51,28 +43,40 @@ class Weather : ApiQuery {
                         and escape the status code.
 
     */
-    func queryForForecast(inTown: String, completion: @escaping () -> ()) {
-        let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')\(suffix)"
-        self.initQuery(query)
+    func queryForForecast(inTown: String, completion: @escaping (Bool) -> ()) {
+        let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')"
+        let request = createRequest(inTown)
+        task?.cancel()
 
         guard let errorDelegate = self.errorDelegate else { return }
 
-        self.launchQuery(success: { (data) in
-            do {
-                self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
-            } catch {
-                errorDelegate.errorHandling(self, Error.unknownError)
-            }
-            self.extractUsefullInfosFromParsedQuery()
-            completion()
-        }, failure: { (statusCode) in
-            switch statusCode {
-            case 400...499: errorDelegate.errorHandling(self, Error.webClientError)
-            case 500...599: errorDelegate.errorHandling(self, Error.serverError)
-            default : errorDelegate.errorHandling(self, Error.unknownError)
+        task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            DispatchQueue.main.async {
+
+                guard let reponse = response as? HTTPURLResponse, reponse.statusCode == 200 else {
+                    if let response = response as? HTTPURLResponse {
+                        self.statusCodeErrorHandling(statusCode: response.statusCode)
+                    }
+                    return
+                }
+
+                guard let data = data, error == nil else {
+                    errorDelegate.errorHandling(self, Error.unknownError)
+                    completion(false)
+                    return
+                }
+
+                do {
+                    self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
+                } catch {
+                    errorDelegate.errorHandling(self, Error.unknownError)
+                    completion(false)
+                }
+                self.extractUsefullInfosFromParsedQuery()
+                completion(true)
             }
         })
-
+        task?.resume()
     }
 
     /**
@@ -83,9 +87,8 @@ class Weather : ApiQuery {
         guard let forecastChannel = parsedQuery?.query?.results?.channel else { return }
         guard let location = forecastChannel.location else { return }
         guard let forecastInfos = forecastChannel.item?.forecast else { return }
-        guard let currentCondition = forecastChannel.item?.condition else { return }
 
-        self.forecast = Forecast(location, forecastInfos, currentCondition)
+        self.forecast = Forecast(location, forecastInfos)
 
     }
 
@@ -99,6 +102,24 @@ class Weather : ApiQuery {
      */
     func fahrenheitToCelcius( _ temp: Float) -> Float{
         return (temp - 32) / 1.8
+    }
+
+    private func createRequest(_ inTown : String) -> URLRequest {
+        var request = URLRequest(url: URL(string: Constants.WeatherConstants.ENDPOINT)!)
+        request.httpMethod = Constants.WeatherConstants.HTTP_METHOD
+        let body = Constants.WeatherConstants.QUERY + inTown + Constants.WeatherConstants.SUFFIX
+        request.httpBody = body.data(using: .utf8)
+        return request
+    }
+
+    private func statusCodeErrorHandling(statusCode : Int ){
+        guard let errorDelegate = self.errorDelegate else { return }
+
+        switch statusCode {
+        case 400...499:errorDelegate.errorHandling(self, Error.webClientError)
+        case 500...599:errorDelegate.errorHandling(self, Error.serverError)
+        default :errorDelegate.errorHandling(self, Error.unknownError)
+        }
     }
 
 }
