@@ -10,7 +10,7 @@ import UIKit
 
 extension WeatherViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let forecastInfos = weatherTarget?.forecast else { return 0 }
+        guard let forecastInfos = weatherTarget else { return 0 }
 
         return forecastInfos.forecast.count
     }
@@ -37,17 +37,13 @@ extension WeatherViewController : UITableViewDataSource {
     */
     private func setConditionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConditionCell", for: indexPath) as! WeatherTableCell
-        guard let forecastInfosTarget = weatherTarget?.forecast, let forecastInfosSource = weatherSource?.forecast,
-        let weather = weatherTarget else {
-            self.errorHandling(self, Error.unknownError)
-            return cell
-        }
+
         var forecastInfo : Weather.Forecast!
         switch tableView {
         case self.tableViewForWeatherTarget :
-            forecastInfo = forecastInfosTarget
+            forecastInfo = weatherTarget
         case self.tableViewForWeatherSource :
-            forecastInfo = forecastInfosSource
+            forecastInfo = weatherSource
         default :
             break
         }
@@ -63,8 +59,8 @@ extension WeatherViewController : UITableViewDataSource {
         cell.weatherTextLabel.text = weatherCodes[codeAsInt]
 
         guard let lowCelcius = Float(low), let highCelcius = Float(high) else {return cell}
-        let roundedLowCelcius = String(format: "%.0F" , weather.fahrenheitToCelcius(lowCelcius))
-        let roundedHighCelcius = String(format : "%.0F", weather.fahrenheitToCelcius(highCelcius))
+        let roundedLowCelcius = String(format: "%.0F" , Weather.shared.fahrenheitToCelcius(lowCelcius))
+        let roundedHighCelcius = String(format : "%.0F", Weather.shared.fahrenheitToCelcius(highCelcius))
         cell.temperatureLabel.text = "Entre \(roundedLowCelcius )°C et :\(roundedHighCelcius)°C"
 
         let url = URL(string: "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/\(code)d.png")
@@ -85,7 +81,7 @@ extension WeatherViewController : UITableViewDataSource {
      */
     private func setDateCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DateCell", for: indexPath) as! DateTableCell
-        if let forecastInfosTarget = weatherTarget?.forecast{
+        if let forecastInfosTarget = weatherTarget {
 
             guard let day = forecastInfosTarget.forecast[indexPath.row].day,
                 let date = forecastInfosTarget.forecast[indexPath.row].date

@@ -9,6 +9,7 @@
 import Foundation
 
 class Weather{
+    static var shared = Weather()
     // ------ Struct
     struct Forecast {
         var location : WeatherLocation
@@ -22,13 +23,12 @@ class Weather{
 
     // ----- Attribut
     var parsedQuery : WeatherQuery?
-    var forecast : Forecast?
 
     private var session = URLSession(configuration: .default)
     private var task : URLSessionTask?
     var errorDelegate : ErrorDelegate?
 
-    init() {}
+    private init() {}
 
     init(session : URLSession){
         self.session = session
@@ -43,8 +43,7 @@ class Weather{
                         and escape the status code.
 
     */
-    func queryForForecast(inTown: String, completion: @escaping (Bool) -> ()) {
-        let query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='\(inTown)')"
+    func queryForForecast(inTown: String, completion: @escaping (Bool, Forecast?) -> ()) {
         let request = createRequest(inTown)
         task?.cancel()
 
@@ -56,13 +55,14 @@ class Weather{
                 guard let reponse = response as? HTTPURLResponse, reponse.statusCode == 200 else {
                     if let response = response as? HTTPURLResponse {
                         self.statusCodeErrorHandling(statusCode: response.statusCode)
+                        completion(false, nil)
                     }
                     return
                 }
 
                 guard let data = data, error == nil else {
                     errorDelegate.errorHandling(self, Error.unknownError)
-                    completion(false)
+                    completion(false, nil)
                     return
                 }
 
@@ -70,10 +70,14 @@ class Weather{
                     self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
                 } catch {
                     errorDelegate.errorHandling(self, Error.unknownError)
-                    completion(false)
+                    completion(false, nil)
                 }
-                self.extractUsefullInfosFromParsedQuery()
-                completion(true)
+                let forecast = self.extractUsefullInfosFromParsedQuery()
+                if forecast != nil {
+                    completion(true, forecast)
+                }else {
+                    completion(false, nil)
+                }
             }
         })
         task?.resume()
@@ -83,13 +87,12 @@ class Weather{
         Extract usefull infos from the parsed query so we can use them to
         display the forecast and current weather.
     */
-    func extractUsefullInfosFromParsedQuery() {
-        guard let forecastChannel = parsedQuery?.query?.results?.channel else { return }
-        guard let location = forecastChannel.location else { return }
-        guard let forecastInfos = forecastChannel.item?.forecast else { return }
+    func extractUsefullInfosFromParsedQuery() -> Forecast? {
+        guard let forecastChannel = parsedQuery?.query?.results?.channel else { return nil }
+        guard let location = forecastChannel.location else { return nil }
+        guard let forecastInfos = forecastChannel.item?.forecast else { return nil }
 
-        self.forecast = Forecast(location, forecastInfos)
-
+        return Forecast(location, forecastInfos)
     }
 
     /**

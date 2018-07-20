@@ -27,8 +27,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // ---- properties
-    internal var weatherTarget: Weather?
-    internal var weatherSource: Weather?
+    internal var weatherTarget: Weather.Forecast?
+    internal var weatherSource: Weather.Forecast?
     private let tableviewRowHeight = CGFloat(130)
     private let locationManager = CLLocationManager()
 
@@ -44,11 +44,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBAction func valider() {
         loading(true)
-        guard let forecastTarget = weatherTarget, let forecastSource = weatherSource else {
-            self.errorHandling(self, Error.unknownError)
-            loading(false)
-            return
-        }
 
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
         {
@@ -57,27 +52,39 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             return
         }
 
-        forecastTarget.queryForForecast(inTown: targetLocation) { successTarget in
-            if successTarget {
-                forecastSource.queryForForecast(inTown: sourceLocation) { successSource in
-                    if successSource {
-                        self.tableViewForWeatherTarget.reloadData()
-                        self.tableViewForWeatherSource.reloadData()
-                        self.tableViewForWeatherDate.reloadData()
-
-                        guard let locationSource = forecastSource.forecast?.location.city else { return }
-                        guard let locationTarget = forecastTarget.forecast?.location.city else { return }
-
-                        self.sourceLabel.text = locationSource
-                        self.targetLabel.text = locationTarget
-                        self.dateLabel.text = "Date"
+        Weather.shared.queryForForecast(inTown: targetLocation) { success, forecast in
+            if success{
+                self.weatherTarget = forecast
+                Weather.shared.queryForForecast(inTown: sourceLocation) { success, forecast in
+                    if success{
+                        self.weatherSource = forecast
+                        self.displayForecast()
+                        self.loading(false)
+                    }else {
+                        self.loading(false)
                     }
-                    self.loading(false)
                 }
             }else {
                 self.loading(false)
             }
         }
+
+
+    }
+
+    private func displayForecast() {
+        self.tableViewForWeatherTarget.reloadData()
+        self.tableViewForWeatherSource.reloadData()
+        self.tableViewForWeatherDate.reloadData()
+
+        guard let weatherSource = weatherSource,
+            let locationSource = weatherSource.location.city else { return }
+        guard let weatherTarget = weatherTarget,
+            let locationTarget = weatherTarget.location.city else { return }
+
+        self.sourceLabel.text = locationSource
+        self.targetLabel.text = locationTarget
+        self.dateLabel.text = "Date"
     }
 
     // ---- functions
@@ -85,13 +92,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
 
         loading(false)
-        weatherTarget = Weather()
-        guard let forecastTarget = weatherTarget else {return}
-        forecastTarget.errorDelegate = self
-
-        weatherSource = Weather()
-        guard let forecastSource = weatherSource else {return}
-        forecastSource.errorDelegate = self
+        Weather.shared.errorDelegate = self
 
         tableViewForWeatherDate.rowHeight = tableviewRowHeight
         tableViewForWeatherSource.rowHeight = tableviewRowHeight
@@ -113,8 +114,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func getLocation() {
         let geocoder = CLGeocoder()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            guard let forecastTarget = self.weatherTarget,
-                let errorDelegate = forecastTarget.errorDelegate else {return}
+            guard let errorDelegate = Weather.shared.errorDelegate else {return}
             guard let location = locationManager.location else {
                 errorDelegate.errorHandling(self, Error.localisationProblem)
                 return
