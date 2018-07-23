@@ -14,44 +14,55 @@ class Change {
     var errorDelegate : ErrorDelegate?
     private var session = URLSession(configuration: .default)
     private var task : URLSessionDataTask?
+    private var useErrorDelegate = true
 
     private init(){}
 
     init(session : URLSession){
         self.session = session
+        self.useErrorDelegate = false
     }
 
-    func queryForChange(_ to : String, completion : @escaping (Bool) -> ()) {
+    func queryForChange(_ to : String, completion : @escaping (Bool, ChangeQuery?) -> ()) {
         let request = createRequest(to)
 
-        guard let errorDelegate = self.errorDelegate else { return }
         task?.cancel()
         task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    errorDelegate.errorHandling(self, Error.unknownError)
-                    completion(false)
-                    return
-                }
-
                 guard let reponse = response as? HTTPURLResponse, reponse.statusCode == 200 else {
                     if let response = response as? HTTPURLResponse {
                         self.statusCodeErrorHandling(statusCode: response.statusCode)
+                         completion(false, nil)
                     }
-                    completion(false)
+                    return
+                }
+
+                guard let data = data, error == nil else {
+                    self.throwError(error: Error.unknownError)
+                    completion(false, nil)
                     return
                 }
 
                 do {
                     self.rateResult = try JSONDecoder().decode(ChangeQuery.self, from: data)
                 } catch {
-                    errorDelegate.errorHandling(self, Error.unknownError)
-                    completion(false)
+                    self.throwError(error: Error.unknownError)
+                    completion(false, nil)
                 }
-                completion(true)
+                
+                if self.rateResult != nil {
+                    completion(true, self.rateResult)
+                }else {
+                    completion(false, nil)
+                }
             }
         })
         task?.resume()
+    }
+
+    private func throwError(error : Error) {
+        guard let errorDelegate = self.errorDelegate else { return }
+        errorDelegate.errorHandling(self, error)
     }
 
     func conversion(_ rate : Double, _ amout : Double) -> Double {

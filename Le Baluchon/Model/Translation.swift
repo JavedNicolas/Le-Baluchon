@@ -16,52 +16,62 @@ class Translation {
         case en
     }
 
-    var translationText : String?
     var translatedQuery : TranslationQuery?
     private var session = URLSession(configuration: .default)
     private var task : URLSessionDataTask?
     var errorDelegate : ErrorDelegate?
+    var useErrorDelegate = true
 
     private init() {}
 
     init(session : URLSession){
         self.session = session
+        useErrorDelegate = false
     }
 
-    func queryForTranslation(sentence : String, completion : @escaping (Bool) -> () ) {
+    func queryForTranslation(sentence : String, completion : @escaping (Bool, String?) -> () ) {
         let request = createRequest(Lang.fr.rawValue, Lang.en.rawValue, sentence)
+        var translationText : String?
         task?.cancel()
-
-        guard let errorDelegate = self.errorDelegate else { return }
 
         task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    errorDelegate.errorHandling(self, Error.unknownError)
-                    completion(false)
-                    return
-                }
-
                 guard let reponse = response as? HTTPURLResponse, reponse.statusCode == 200 else {
                     if let response = response as? HTTPURLResponse {
                         self.statusCodeErrorHanlding(statusCode: response.statusCode)
                     }
-                    completion(false)
+                    completion(false, nil)
+                    return
+                }
+
+                guard let data = data, error == nil else {
+                    self.throwError(error: Error.unknownError)
+                    completion(false, nil)
                     return
                 }
 
                 do {
                     self.translatedQuery = try JSONDecoder().decode(TranslationQuery.self, from: data)
-                    self.translationText = self.translatedQuery?.data?.translations?[0].translatedText
+                    translationText = self.translatedQuery?.data?.translations?[0].translatedText
                 }catch{
-                    errorDelegate.errorHandling(self, Error.unknownError)
-                    completion(false)
+                    self.throwError(error: Error.unknownError)
+                    completion(false, nil)
                 }
-                completion(true)
+
+                if translationText != nil {
+                    completion(true, translationText)
+                }else {
+                    completion(false, nil)
+                }
 
             }
         })
         task?.resume()
+    }
+
+    private func throwError(error : Error) {
+        guard let errorDelegate = self.errorDelegate else { return }
+        errorDelegate.errorHandling(self, error)
     }
 
     private func createRequest(_ source : String, _ target : String, _ text : String) -> URLRequest {

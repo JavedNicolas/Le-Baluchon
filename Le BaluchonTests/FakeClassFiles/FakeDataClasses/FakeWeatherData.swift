@@ -14,7 +14,11 @@ class FakeWeatherData {
     static let responseOK = HTTPURLResponse.init(url: URL(string: "http://openclassroom.com")!,
                                           statusCode: 200, httpVersion: nil, headerFields: [:])
     static let responseKO = HTTPURLResponse.init(url: URL(string: "http://openclassroom.com")!,
-                                          statusCode: 200, httpVersion: nil, headerFields: [:])
+                                          statusCode: 400, httpVersion: nil, headerFields: [:])
+
+    // ----- fake error from server
+    class WeatherError: Error {}
+    static let error = WeatherError()
 
     // --- fake data from server
     static var correctData : Data {

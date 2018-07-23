@@ -25,13 +25,15 @@ class Weather{
     var parsedQuery : WeatherQuery?
 
     private var session = URLSession(configuration: .default)
-    private var task : URLSessionTask?
+    private var task : URLSessionDataTask?
     var errorDelegate : ErrorDelegate?
+    private var useErrorDelegate = true
 
     private init() {}
 
     init(session : URLSession){
         self.session = session
+        useErrorDelegate = false
     }
 
     /**
@@ -47,8 +49,6 @@ class Weather{
         let request = createRequest(inTown)
         task?.cancel()
 
-        guard let errorDelegate = self.errorDelegate else { return }
-
         task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
 
@@ -61,7 +61,7 @@ class Weather{
                 }
 
                 guard let data = data, error == nil else {
-                    errorDelegate.errorHandling(self, Error.unknownError)
+                    self.throwError(error: Error.unknownError)
                     completion(false, nil)
                     return
                 }
@@ -69,7 +69,7 @@ class Weather{
                 do {
                     self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
                 } catch {
-                    errorDelegate.errorHandling(self, Error.unknownError)
+                    self.throwError(error: Error.unknownError)
                     completion(false, nil)
                 }
                 let forecast = self.extractUsefullInfosFromParsedQuery()
@@ -81,6 +81,11 @@ class Weather{
             }
         })
         task?.resume()
+    }
+
+    private func throwError(error : Error) {
+        guard let errorDelegate = self.errorDelegate else { return }
+        errorDelegate.errorHandling(self, error)
     }
 
     /**

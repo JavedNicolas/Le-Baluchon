@@ -35,9 +35,9 @@ class TranslateViewController: UIViewController {
     @IBAction func valider() {
         loading(true)
 
-        Translation.shared.queryForTranslation(sentence: sourceTextField.text, completion: { success in
+        Translation.shared.queryForTranslation(sentence: sourceTextField.text, completion: { success, translation in
             if success {
-                self.targetTextField.text = Translation.shared.translationText
+                self.targetTextField.text = translation
             }
             self.loading(false)
         })

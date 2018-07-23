@@ -58,11 +58,11 @@ class ChangeViewController: UIViewController {
         }
 
         let amout = NSString(string: amoutString).doubleValue
-        Change.shared.queryForChange(changeName.apiName) { success in
+        Change.shared.queryForChange(changeName.apiName) { success, changeResult in
             if success {
                 self.titleLabel.text = "Conversion de euro à \(changeName.name)"
                 self.separator.isHidden = false
-                guard let result = Change.shared.rateResult, let date = result.date else {
+                guard let result = changeResult, let date = result.date else {
                     self.errorHandling(self, Error.unknownError)
                     self.loading(false)
                     return
