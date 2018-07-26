@@ -32,12 +32,32 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     private let tableviewRowHeight = CGFloat(130)
     private let locationManager = CLLocationManager()
 
+    // --------- VC functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        loading(false)
+        Weather.shared.errorDelegate = self
+
+        tableViewForWeatherDate.rowHeight = tableviewRowHeight
+        tableViewForWeatherSource.rowHeight = tableviewRowHeight
+        tableViewForWeatherTarget.rowHeight = tableviewRowHeight
+        launchPositionLocation()
+        getLocation()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     // ---- Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
         textfieldSourceLocation.resignFirstResponder()
         textfieldTargetLocation.resignFirstResponder()
     }
 
+    /** get the user current location */
     @IBAction func getCurrentLocationFormButton(_ sender: Any) {
         getLocation()
     }
@@ -45,6 +65,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func valider() {
         loading(true)
 
+        // forecast locations
         guard let sourceLocation = textfieldSourceLocation.text, let targetLocation = textfieldTargetLocation.text else
         {
             self.errorHandling(self, Error.unknownError)
@@ -72,6 +93,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     }
 
+    // ---- functions
+    /** reload the tableviews to display the weather infos */
     private func displayForecast() {
         self.tableViewForWeatherTarget.reloadData()
         self.tableViewForWeatherSource.reloadData()
@@ -87,20 +110,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         self.dateLabel.text = "Date"
     }
 
-    // ---- functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        loading(false)
-        Weather.shared.errorDelegate = self
-
-        tableViewForWeatherDate.rowHeight = tableviewRowHeight
-        tableViewForWeatherSource.rowHeight = tableviewRowHeight
-        tableViewForWeatherTarget.rowHeight = tableviewRowHeight
-        launchPositionLocation()
-        getLocation()
-    }
-
+    /** enable and launch the location mananger */
     func launchPositionLocation() {
         locationManager.requestWhenInUseAuthorization()
 
@@ -111,6 +121,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
+    /** retrive the current user location */
     func getLocation() {
         let geocoder = CLGeocoder()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -137,6 +148,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     }
 
+    /** Display or hide the loading bar */
     private func loading(_ isLoading: Bool ) {
         activityIndicator.isHidden = !isLoading
         if isLoading {
@@ -145,12 +157,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             activityIndicator.stopAnimating()
         }
         validateButton.isHidden = isLoading
-    }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

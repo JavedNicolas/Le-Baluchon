@@ -28,11 +28,9 @@ extension WeatherViewController : UITableViewDataSource {
 
     /**
         Set the condition cell content
-
         - parameters:
             - tableView : UITableView in which the setting is being done
             - indexPath : index of the cell currently being set
-
         - returns: the UITableViewCell that has been set
     */
     private func setConditionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -72,11 +70,9 @@ extension WeatherViewController : UITableViewDataSource {
 
     /**
         Set the date cell content
-
         - parameters:
             - tableView : UITableView in which the setting is being done
             - indexPath : index of the cell currently being set
-
         - returns: the UITableViewCell that has been set
      */
     private func setDateCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -9,7 +9,9 @@
 import Foundation
 
 class Translation {
+    // ---- Singleton
     static var shared = Translation()
+
     //----- Attribut
     enum Lang : String {
         case fr
@@ -22,13 +24,23 @@ class Translation {
     var errorDelegate : ErrorDelegate?
     var useErrorDelegate = true
 
+    // ----------- Inits
     private init() {}
 
+    /** init for the test */
     init(session : URLSession){
         self.session = session
         useErrorDelegate = false
     }
 
+    // ------------- Methodes
+    /**
+     Launch the query to get the last forecast for a given town
+     - parameters:
+        - sentence : The given sentence to translate
+        - completion: The completion Handler which is called when the query end (in a bad or a good way
+        and escape if the query succeeded and the translated sentence if so).
+     */
     func queryForTranslation(sentence : String, completion : @escaping (Bool, String?) -> () ) {
         let request = createRequest(Lang.fr.rawValue, Lang.en.rawValue, sentence)
         var translationText : String?
@@ -50,6 +62,7 @@ class Translation {
                     return
                 }
 
+                // parse the answer
                 do {
                     self.translatedQuery = try JSONDecoder().decode(TranslationQuery.self, from: data)
                     translationText = self.translatedQuery?.data?.translations?[0].translatedText
@@ -69,11 +82,15 @@ class Translation {
         task?.resume()
     }
 
-    private func throwError(error : Error) {
-        guard let errorDelegate = self.errorDelegate else { return }
-        errorDelegate.errorHandling(self, error)
-    }
 
+     /**
+     Create an instanciated URLRequest variable and return it.
+     - parameters:
+        - source : the source language
+        - target : the target language
+        - text : text to translate
+     - returns: an instanciated URLRequest
+     */
     private func createRequest(_ source : String, _ target : String, _ text : String) -> URLRequest {
         var request = URLRequest(url: URL(string: Constants.TranslationConstants.ENDPOINT + Constants.TranslationConstants.API_KEY)!)
         request.httpMethod = Constants.TranslationConstants.HTTP_METHOD
@@ -83,6 +100,13 @@ class Translation {
         return request
     }
 
+    /** Launch the errorDelagete to display the error */
+    private func throwError(error : Error) {
+        guard let errorDelegate = self.errorDelegate else { return }
+        errorDelegate.errorHandling(self, error)
+    }
+
+    /** Launch the errorDelagete to display the error for status code */
     private func statusCodeErrorHanlding(statusCode : Int) {
         guard let errorDelegate = self.errorDelegate else { return }
         switch statusCode {

@@ -9,20 +9,34 @@
 import Foundation
 
 class Change {
+    // ----------- Methods 
     static var shared = Change()
+
+    // ----------- Attributs
     var rateResult : ChangeQuery?
     var errorDelegate : ErrorDelegate?
     private var session = URLSession(configuration: .default)
     private var task : URLSessionDataTask?
     private var useErrorDelegate = true
 
+    // ------------ inits
     private init(){}
 
+    /** init for the tests */
     init(session : URLSession){
         self.session = session
         self.useErrorDelegate = false
     }
 
+    // -------------- Methods
+
+    /**
+     Launch the query to get the last forecast for a given town.
+     - parameters:
+        - to : The given currency code to convert in
+        - completion: The completion Handler which is called when the query end (in a bad or a good way
+        and escape if the query succeeded and the query change if so).
+     */
     func queryForChange(_ to : String, completion : @escaping (Bool, ChangeQuery?) -> ()) {
         let request = createRequest(to)
 
@@ -43,6 +57,7 @@ class Change {
                     return
                 }
 
+                // parse the answer
                 do {
                     self.rateResult = try JSONDecoder().decode(ChangeQuery.self, from: data)
                 } catch {
@@ -60,15 +75,16 @@ class Change {
         task?.resume()
     }
 
-    private func throwError(error : Error) {
-        guard let errorDelegate = self.errorDelegate else { return }
-        errorDelegate.errorHandling(self, error)
-    }
-
     func conversion(_ rate : Double, _ amout : Double) -> Double {
         return rate * amout
     }
 
+    /**
+     Create an instanciated URLRequest variable and return it
+     - parameters:
+        - currency : the currency code
+     - returns: an instanciated URLRequest
+     */
     private func createRequest(_ currency : String) -> URLRequest {
         var requesst = URLRequest (url: URL(string: Constants.ChangeConstants.ENDPOINT +
             Constants.ChangeConstants.ACCESS_KEY + Constants.ChangeConstants.API_KEY)!)
@@ -78,6 +94,13 @@ class Change {
         return requesst
     }
 
+    /** Launch the errorDelagete to display the error */
+    private func throwError(error : Error) {
+        guard let errorDelegate = self.errorDelegate else { return }
+        errorDelegate.errorHandling(self, error)
+    }
+
+    /** Launch the errorDelagete to display the status code error */
     private func statusCodeErrorHandling(statusCode : Int ){
         guard let errorDelegate = self.errorDelegate else { return }
 

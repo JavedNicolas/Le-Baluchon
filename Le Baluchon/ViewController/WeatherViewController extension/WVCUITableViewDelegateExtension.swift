@@ -9,7 +9,6 @@
 import UIKit
 
 extension WeatherViewController : UITableViewDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableViewForWeatherSource {
             self.tableViewForWeatherTarget.setContentOffset(scrollView.contentOffset, animated: false)

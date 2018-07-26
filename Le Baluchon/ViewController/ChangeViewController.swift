@@ -11,7 +11,6 @@ import UIKit
 class ChangeViewController: UIViewController {
 
     // ------ Outlet
-
     @IBOutlet weak var targetSegmentedControl: UISegmentedControl!
     @IBOutlet weak var amoutTextfield: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
@@ -33,7 +32,7 @@ class ChangeViewController: UIViewController {
     // ---- Attribut
     private var change : Change?
 
-    // ---- func
+    // --------- VC functions
     override func viewDidLoad() {
         super.viewDidLoad()
         loading(false)
@@ -87,13 +86,15 @@ class ChangeViewController: UIViewController {
         amoutTextfield.resignFirstResponder()
     }
 
-    //----- func
+    //----- functions
+    /** return a formated double with 2 decimals */
     private func formatDoubles(_ numberToFormat: Double) -> Double {
         let numberAsString = String(format: "%.2f", numberToFormat)
         let number = NSString(string: numberAsString).doubleValue
         return number
     }
 
+    /** return a Money variable depending on the segmented controller */
     private func getSegmentedControlText(_ segmentedControl : UISegmentedControl) -> Money {
         let index = segmentedControl.selectedSegmentIndex
         switch index {
@@ -105,6 +106,7 @@ class ChangeViewController: UIViewController {
         }
     }
 
+    /** Display or hide the loading bar*/
     private func loading(_ isLoading: Bool ) {
         activityIndicator.isHidden = !isLoading
         if isLoading {

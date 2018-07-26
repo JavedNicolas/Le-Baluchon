@@ -9,8 +9,10 @@
 import Foundation
 
 class Weather{
+    // Singleton
     static var shared = Weather()
-    // ------ Struct
+
+    // -------- Struct
     struct Forecast {
         var location : WeatherLocation
         var forecast : [WeatherCondition]
@@ -21,7 +23,7 @@ class Weather{
         }
     }
 
-    // ----- Attribut
+    // --------- Attribut
     var parsedQuery : WeatherQuery?
 
     private var session = URLSession(configuration: .default)
@@ -29,21 +31,23 @@ class Weather{
     var errorDelegate : ErrorDelegate?
     private var useErrorDelegate = true
 
+    // -------- Inits
     private init() {}
 
+    /** init for the tests */
     init(session : URLSession){
         self.session = session
         useErrorDelegate = false
     }
 
+    // ---------- Methods
+
     /**
      Launch the query to get the last forecast for a given town
-
      - parameters:
-        -  inTown : The given Town
+        - inTown : The given Town
         - completion: The completion Handler which is called when the query end (in a bad or a good way
-                        and escape the status code.
-
+                        and escape if the query succeeded and the forecast if so).
     */
     func queryForForecast(inTown: String, completion: @escaping (Bool, Forecast?) -> ()) {
         let request = createRequest(inTown)
@@ -66,6 +70,7 @@ class Weather{
                     return
                 }
 
+                // parse the answer
                 do {
                     self.parsedQuery = try JSONDecoder().decode(WeatherQuery.self, from: data)
                 } catch {
@@ -83,16 +88,11 @@ class Weather{
         task?.resume()
     }
 
-    private func throwError(error : Error) {
-        guard let errorDelegate = self.errorDelegate else { return }
-        errorDelegate.errorHandling(self, error)
-    }
-
     /**
         Extract usefull infos from the parsed query so we can use them to
         display the forecast and current weather.
     */
-    func extractUsefullInfosFromParsedQuery() -> Forecast? {
+    private func extractUsefullInfosFromParsedQuery() -> Forecast? {
         guard let forecastChannel = parsedQuery?.query?.results?.channel else { return nil }
         guard let location = forecastChannel.location else { return nil }
         guard let forecastInfos = forecastChannel.item?.forecast else { return nil }
@@ -101,17 +101,11 @@ class Weather{
     }
 
     /**
-     Convert fahrenheit temperature to celcius
-
+     Create an instanciated URLRequest variable and return it.
      - parameters:
-        -  temp : The temperature une fahrenheit
-
-     - returns: The temperature in celcius
+        - inTown : The given Town for the forecast
+     - returns: an instanciated URLRequest
      */
-    func fahrenheitToCelcius( _ temp: Float) -> Float{
-        return (temp - 32) / 1.8
-    }
-
     private func createRequest(_ inTown : String) -> URLRequest {
         var request = URLRequest(url: URL(string: Constants.WeatherConstants.ENDPOINT)!)
         request.httpMethod = Constants.WeatherConstants.HTTP_METHOD
@@ -120,6 +114,18 @@ class Weather{
         return request
     }
 
+    /** Convert Farenheit to celcius and return the result */
+    func fahrenheitToCelcius( _ temp: Float) -> Float{
+        return (temp - 32) / 1.8
+    }
+
+    /** Launch the errorDelagete to display the error */
+    private func throwError(error : Error) {
+        guard let errorDelegate = self.errorDelegate else { return }
+        errorDelegate.errorHandling(self, error)
+    }
+
+    /** Launch the errorDelagete to display the error for status code */
     private func statusCodeErrorHandling(statusCode : Int ){
         guard let errorDelegate = self.errorDelegate else { return }
 

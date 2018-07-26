@@ -19,11 +19,15 @@ class TranslateViewController: UIViewController {
     // ----- attributs
     private var translation : Translation?
 
+    // ----- VC Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         loading(false)
         Translation.shared.errorDelegate = self
+    }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     // ---- Actions
@@ -44,10 +48,7 @@ class TranslateViewController: UIViewController {
     }
 
     // ----- method
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
+    /** Display or not the loading bar */
     private func loading(_ isLoading: Bool ) {
         activityIndicator.isHidden = !isLoading
         if isLoading {
